@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import { App } from './App'
 import reportWebVitals from './reportWebVitals'
+import firebase from 'firebase/app'
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCxnhAj3kGW3rzf1ZAgaOJR0n0xMgXpRWk',
+  projectId: 'easy-chat-35c14',
+  appId: '1:57285489463:web:63aaeae4e0b1d626cea0b2'
+}
+
+firebase.initializeApp(firebaseConfig)
 
 ReactDOM.render(
   <React.StrictMode>
