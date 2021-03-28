@@ -25,6 +25,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint .",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -46,7 +47,11 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.9"
+    "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-react": "^7.23.1"
   },
   "husky": {
     "hooks": {
@@ -54,8 +59,8 @@
     }
   },
   "lint-staged": {
-   "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-     "prettier --write"
-   ]
- }
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
 }
