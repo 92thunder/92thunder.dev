@@ -4,7 +4,7 @@ import { Toolbar, AppBar, Typography } from '@material-ui/core'
 
 export const Header: React.VFC = () => {
   return (
-    <StyledAppBar>
+    <StyledAppBar position="static">
       <Toolbar>
         <Typography variant="h6">
           つくりおき
