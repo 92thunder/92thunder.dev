@@ -7,7 +7,7 @@ export const Header: React.VFC = () => {
     <StyledAppBar position="static">
       <Toolbar>
         <Typography variant="h6">
-          つくりおき
+          92thunder.dev
         </Typography>
       </Toolbar>
     </StyledAppBar>

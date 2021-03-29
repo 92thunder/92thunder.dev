@@ -1,4 +1,4 @@
-import { Card, CardContent, Container, Typography } from '@material-ui/core'
+import { Card, CardContent, Typography } from '@material-ui/core'
 import React from 'react'
 import { useAsync } from 'react-use'
 import styled from 'styled-components'
@@ -10,7 +10,7 @@ export const Posts: React.VFC = () => {
     return await postRepository.findAll()
   }, [])
   return state.value ?
-    <Container>
+    <>
       {state.value.map((post) => (
         <StyledCard key={post.id}>
           <CardContent>
@@ -20,7 +20,7 @@ export const Posts: React.VFC = () => {
           </CardContent>
         </StyledCard> 
       ))}
-    </Container>
+    </>
     : null
 }
 
