@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography } from '@material-ui/core'
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 import { useAsync } from 'react-use'
 import styled from 'styled-components'
 import { createPostRepository } from '../repositories/PostRepository'
@@ -17,6 +18,9 @@ export const Posts: React.VFC = () => {
             <Typography variant="h5">
               {post.title}
             </Typography>
+            <ReactMarkdown>
+              {post.content}
+            </ReactMarkdown>
           </CardContent>
         </StyledCard> 
       ))}
