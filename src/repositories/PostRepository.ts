@@ -12,7 +12,7 @@ export const createPostRepository: () => PostRepository = () => {
   return {
     async findAll() {
       const posts: Post[] = []
-      const querySnapshot = await db.collection('posts').get()
+      const querySnapshot = await db.collection('posts').where('published', '==', true).get()
       querySnapshot.forEach((doc) => {
         const data = doc.data() as Post
         posts.push({id: doc.id,
