@@ -5,7 +5,7 @@ import { Toolbar, AppBar, Typography } from '@material-ui/core'
 export const Header: React.VFC = () => {
   return (
     <StyledAppBar position="static">
-      <Toolbar>
+      <Toolbar variant="dense">
         <Typography variant="h6">
           92thunder.dev
         </Typography>

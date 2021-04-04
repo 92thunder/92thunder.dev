@@ -6,7 +6,7 @@ export const Title: React.VFC = () => {
     <Box m={2}>
       <Grid container alignItems="center" justify="center">
         <Grid item>
-          <Typography variant="h2">
+          <Typography variant="h3">
             つくりおき
           </Typography>
         </Grid>

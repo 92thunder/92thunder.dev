@@ -1,7 +1,9 @@
 import { Container, createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
 import React from 'react'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Header } from './components/Header'
+import { Post } from './components/Post'
 import { Posts } from './components/Posts'
 import { Title } from './components/Title'
 
@@ -19,8 +21,17 @@ export const App: React.VFC = () => {
       <ThemeProvider theme={theme}>
         <Header/>
         <Container>
-          <Title/>
-          <Posts/>
+          <Router>
+            <Switch>
+              <Route path='/posts/:postId'>
+                <Post/>
+              </Route>
+              <Route path="/">
+                <Title/>
+                <Posts/>
+              </Route>
+            </Switch>
+          </Router>
         </Container>
       </ThemeProvider>
     </div>

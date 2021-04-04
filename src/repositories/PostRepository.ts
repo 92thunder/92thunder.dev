@@ -1,11 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-
-type Post = {
-  id: string
-  title: string
-  content: string
-}
+import { Post } from '../types'
 
 type PostRepository = {
   findAll: () => Promise<Post[]>
@@ -22,7 +17,7 @@ export const createPostRepository: () => PostRepository = () => {
         const data = doc.data() as Post
         posts.push({id: doc.id,
           title: data.title,
-          content: data.content
+          body: data.body
         })
       })
       return posts
@@ -34,7 +29,7 @@ export const createPostRepository: () => PostRepository = () => {
       return {
         id: doc.id,
         title: data.title,
-        content: data.content
+        body: data.body
       }
     }
   }
