@@ -12,12 +12,27 @@ const PostCard: React.VFC<{ post: Post }> = ({ post }) => {
     history.push(`/posts/${post.id}`)
   }
 
+  const bodyPreview = post.body.includes('---')
+    ? post.body.split('---')[0]
+    : null
+
   return (
     <StyledCard onClick={onClick} >
       <CardContent>
-        <Typography variant="h5">
-          {post.title}
-        </Typography>
+        <Grid container spacing={2} direction="column">
+          <Grid item>
+            <Typography variant="h5">
+              {post.title}
+            </Typography>
+          </Grid>
+          {bodyPreview && (
+            <Grid item>
+              <Typography>
+                {bodyPreview}
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
       </CardContent>
     </StyledCard> 
   )
