@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -8,9 +9,11 @@ import (
 )
 
 type Post struct {
-	Id    string `json:"id"`
-	Title string `json:"title"`
-	Body  string `json:"body"`
+	Id          int    `json:"id" db:"id"`
+	Title       string `json:"title" db:"title"`
+	Body        string `json:"body" db:"body"`
+	Published   bool   `json:"published" db:"published"`
+	PublishedAt string `json:"published_at" db:"published_at"`
 }
 
 var db *sqlx.DB
@@ -25,6 +28,18 @@ func InitDB() {
 
 func GetPosts() []Post {
 	posts := []Post{}
-	db.Select(&posts, "SELECT * FROM posts")
+	db.Select(&posts, "SELECT * FROM post")
 	return posts
+}
+
+func SavePost(post *Post) {
+	fmt.Println(post.Body)
+	tx, _ := db.Begin()
+	_, err := tx.Exec("INSERT INTO post (id, title, body, published, published_at) VALUES(?,?,?,?,?)", post.Id, post.Title, post.Body, post.Published, post.PublishedAt)
+	if err != nil {
+		fmt.Println(err)
+	}
+	if err := tx.Commit(); err != nil {
+		fmt.Println("failed to commit tx: %v", err)
+	}
 }

@@ -11,7 +11,18 @@ func getPosts(c echo.Context) error {
 	return c.JSON(http.StatusOK, GetPosts())
 }
 
+func savePost(c echo.Context) error {
+	p := new(Post)
+	if err := c.Bind(p); err != nil {
+		return err
+	}
+	SavePost(p)
+	return c.JSON(http.StatusOK, p)
+}
+
 func main() {
+	InitDB()
+
 	// Echo instance
 	e := echo.New()
 
@@ -20,16 +31,9 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// Routes
-	e.GET("/", hello)
 	e.GET("/posts", getPosts)
-
-	InitDB()
+	e.POST("/posts", savePost)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
-}
-
-// Handler
-func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
 }
