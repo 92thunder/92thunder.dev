@@ -28,12 +28,14 @@ func InitDB() {
 
 func GetPosts() []Post {
 	posts := []Post{}
-	db.Select(&posts, "SELECT * FROM post")
+	err := db.Select(&posts, "SELECT * FROM post")
+	if err != nil {
+		fmt.Println(err)
+	}
 	return posts
 }
 
 func SavePost(post *Post) {
-	fmt.Println(post.Body)
 	tx, _ := db.Begin()
 	_, err := tx.Exec("INSERT INTO post (id, title, body, published, published_at) VALUES(?,?,?,?,?)", post.Id, post.Title, post.Body, post.Published, post.PublishedAt)
 	if err != nil {
