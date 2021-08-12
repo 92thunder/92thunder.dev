@@ -35,6 +35,15 @@ func GetPosts() []Post {
 	return posts
 }
 
+func GetPost(id string) Post {
+	post := Post{}
+	err := db.Get(&post, "SELECT * FROM post WHERE id = ?", id)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return post
+}
+
 func SavePost(post *Post) {
 	tx, _ := db.Begin()
 	_, err := tx.Exec("INSERT INTO post (id, title, body, published, published_at) VALUES(?,?,?,?,?)", post.Id, post.Title, post.Body, post.Published, post.PublishedAt)
