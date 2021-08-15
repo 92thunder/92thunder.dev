@@ -47,7 +47,8 @@ func main() {
 	// Routes
 	e.GET("/posts", getPosts)
 	e.GET("/posts/:id", getPost)
-	e.POST("/posts", savePost)
+	// TODO: 認証する
+	// e.POST("/posts", savePost)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
