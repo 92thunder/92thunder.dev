@@ -22,16 +22,20 @@ func getPost(c echo.Context) error {
 }
 
 func savePost(c echo.Context) error {
-	p := new(Post)
+	p := new(SavePostRequest)
 	if err := c.Bind(p); err != nil {
 		return err
 	}
-	SavePost(p)
-	return c.JSON(http.StatusOK, p)
+	post, err := SavePost(p)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+	return c.JSON(http.StatusOK, post)
 }
 
 func main() {
 	InitDB()
+	defer db.Close()
 
 	// Echo instance
 	e := echo.New()

@@ -10,7 +10,7 @@ import (
 )
 
 type Post struct {
-	Id          int    `json:"id" db:"id"`
+	Id          int64  `json:"id" db:"id"`
 	Title       string `json:"title" db:"title"`
 	Body        string `json:"body" db:"body"`
 	Published   bool   `json:"published" db:"published"`
@@ -45,13 +45,27 @@ func GetPost(id string) (*Post, error) {
 	return &post, nil
 }
 
-func SavePost(post *Post) {
-	tx, _ := db.Begin()
-	_, err := tx.Exec("INSERT INTO post (id, title, body, published, published_at) VALUES(?,?,?,?,?)", post.Id, post.Title, post.Body, post.Published, post.PublishedAt)
+type SavePostRequest struct {
+	Title       string `json:"title" db:"title"`
+	Body        string `json:"body" db:"body"`
+	Published   bool   `json:"published" db:"published"`
+	PublishedAt string `json:"published_at" db:"published_at"`
+}
+
+func SavePost(p *SavePostRequest) (*Post, error) {
+	db.Begin()
+	result, err := db.Exec("INSERT INTO post (title, body, published, published_at) VALUES(?,?,?,?)", p.Title, p.Body, p.Published, p.PublishedAt)
 	if err != nil {
 		fmt.Println(err)
+		return nil, err
 	}
-	if err := tx.Commit(); err != nil {
-		fmt.Println("failed to commit tx: %v", err)
-	}
+
+	var post = new(Post)
+	post.Id, _ = result.LastInsertId()
+	post.Title = p.Body
+	post.Body = p.Body
+	post.Published = p.Published
+	post.PublishedAt = p.PublishedAt
+
+	return post, nil
 }
