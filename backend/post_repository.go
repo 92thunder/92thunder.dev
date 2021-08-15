@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 
@@ -28,20 +29,20 @@ func InitDB() {
 
 func GetPosts() []Post {
 	posts := []Post{}
-	err := db.Select(&posts, "SELECT * FROM post")
+	err := db.Select(&posts, "SELECT * FROM post WHERE published = true")
 	if err != nil {
 		fmt.Println(err)
 	}
 	return posts
 }
 
-func GetPost(id string) Post {
+func GetPost(id string) (*Post, error) {
 	post := Post{}
-	err := db.Get(&post, "SELECT * FROM post WHERE id = ?", id)
+	err := db.Get(&post, "SELECT * FROM post WHERE published = true AND id = ?", id)
 	if err != nil {
-		fmt.Println(err)
+		return nil, errors.New("none")
 	}
-	return post
+	return &post, nil
 }
 
 func SavePost(post *Post) {

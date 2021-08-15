@@ -12,7 +12,13 @@ func getPosts(c echo.Context) error {
 }
 
 func getPost(c echo.Context) error {
-	return c.JSON(http.StatusOK, GetPost(c.Param("id")))
+	p, err := GetPost(c.Param("id"))
+	if err != nil {
+		if err.Error() == "none" {
+			return c.JSON(http.StatusNotFound, nil)
+		}
+	}
+	return c.JSON(http.StatusOK, p)
 }
 
 func savePost(c echo.Context) error {
