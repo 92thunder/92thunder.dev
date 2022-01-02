@@ -8,8 +8,8 @@ export const CodeBlock: CodeComponent  =
     if (inline) {
       return <code className={className}>{children}</code>
     }
-    const match = /language-(\w+)/.exec(className || '');
-  const language = match && match[1] ? match[1] : '';
+    const match = /language-(\w+)/.exec(className || '')
+    const language = match && match[1] ? match[1] : ''
     return (
       <SyntaxHighlighter language={language} style={vscDarkPlus}>
         {children}
