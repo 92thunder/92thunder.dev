@@ -62,7 +62,7 @@ func SavePost(p *SavePostRequest) (*Post, error) {
 
 	var post = new(Post)
 	post.Id, _ = result.LastInsertId()
-	post.Title = p.Body
+	post.Title = p.Title
 	post.Body = p.Body
 	post.Published = p.Published
 	post.PublishedAt = p.PublishedAt
