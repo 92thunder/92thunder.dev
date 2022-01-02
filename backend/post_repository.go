@@ -21,7 +21,7 @@ var db *sqlx.DB
 
 func InitDB() {
 	var err error
-	db, err = sqlx.Open("mysql", "root@/blog")
+	db, err = sqlx.Open("mysql", "root@/blog?parseTime=true")
 	if err != nil {
 		log.Fatal(err)
 	}

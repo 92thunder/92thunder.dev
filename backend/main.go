@@ -1,10 +1,13 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+
+	"github.com/pquerna/otp/totp"
 )
 
 func getPosts(c echo.Context) error {
@@ -33,9 +36,42 @@ func savePost(c echo.Context) error {
 	return c.JSON(http.StatusOK, post)
 }
 
+type SignInRequest struct {
+	Passcode string `json:"passcode"`
+}
+
+func signIn(c echo.Context) error {
+	req := new(SignInRequest)
+	if err := c.Bind(req); err != nil {
+		return err
+	}
+
+	secret, err := GetSecret()
+	valid := totp.Validate(req.Passcode, secret)
+	if valid {
+		return c.JSON(http.StatusOK, secret)
+	} else {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+}
+
 func main() {
 	InitDB()
 	defer db.Close()
+
+	// Secretが無ければ生成する
+	_, err := GetSecret()
+	if err != nil {
+		log.Println(err)
+		key, err := totp.Generate(totp.GenerateOpts{
+			Issuer:      "92thunder.dev",
+			AccountName: "r.kunisada661@gmail.com",
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		SaveSecret(key.Secret(), key.AccountName(), key.URL())
+	}
 
 	// Echo instance
 	e := echo.New()
@@ -49,6 +85,7 @@ func main() {
 	e.GET("/posts/:id", getPost)
 	// TODO: 認証する
 	// e.POST("/posts", savePost)
+	e.POST("/sign_in", signIn)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
