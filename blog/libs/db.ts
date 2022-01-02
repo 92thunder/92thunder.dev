@@ -6,7 +6,7 @@ export const db = mysql({
     port: 3306,
     database: 'blog',
     user: 'root',
-    password: '',
+    password: process.env.DB_PASSWORD ?? '',
   }
 })
 

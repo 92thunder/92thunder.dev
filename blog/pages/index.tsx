@@ -1,12 +1,13 @@
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 import { Posts } from '../components/Posts'
+import { query } from '../libs/db'
 import styles from '../styles/Home.module.css'
 
 export const  getStaticProps: GetStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/posts/')
+  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post')))
   return {
-    props: { posts: await res.json() }
+    props: { posts: results }
   }
 }
 
