@@ -17,7 +17,7 @@ export const  getStaticProps: GetStaticProps = async (context) => {
   }
 
   const id = context.params.id
-  const results = JSON.parse(JSON.stringify(await query(`SELECT * FROM post WHERE id = ?`, id)))
+  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE id = ?', id)))
   return {
     props: { post: results[0] }
   }
