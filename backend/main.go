@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -25,6 +26,19 @@ func getPost(c echo.Context) error {
 }
 
 func savePost(c echo.Context) error {
+	// auth
+	cookie, err := c.Cookie("session_id")
+	if err != nil {
+		log.Println(err)
+		return c.JSON(http.StatusUnauthorized, err)
+	}
+	log.Println(cookie.Value)
+	_, err2 := GetSession(cookie.Value)
+	if err2 != nil {
+		log.Println(err2)
+		return c.JSON(http.StatusUnauthorized, err2)
+	}
+
 	p := new(SavePostRequest)
 	if err := c.Bind(p); err != nil {
 		return err
@@ -49,7 +63,17 @@ func signIn(c echo.Context) error {
 	secret, err := GetSecret()
 	valid := totp.Validate(req.Passcode, secret)
 	if valid {
-		return c.JSON(http.StatusOK, secret)
+		u, err := SaveSession()
+		if err != nil {
+			log.Fatal((err))
+		}
+		cookie := new(http.Cookie)
+		cookie.Name = "session_id"
+		cookie.Value = u
+		cookie.Path = "/"
+		cookie.Expires = time.Now().Add(24 * time.Hour)
+		c.SetCookie(cookie)
+		return c.JSON(http.StatusOK, u)
 	} else {
 		return c.JSON(http.StatusBadRequest, err)
 	}
@@ -83,8 +107,8 @@ func main() {
 	// Routes
 	e.GET("/posts", getPosts)
 	e.GET("/posts/:id", getPost)
-	// TODO: 認証する
-	// e.POST("/posts", savePost)
+	e.POST("/posts", savePost)
+
 	e.POST("/sign_in", signIn)
 
 	// Start server

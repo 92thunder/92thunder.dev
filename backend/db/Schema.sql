@@ -18,5 +18,5 @@ CREATE TABLE blog.secret (
 
 DROP TABLE IF EXISTS blog.session;
 CREATE TABLE blog.session (
-  session VARCHAR(64) NOT NULL PRIMARY KEY
+  id VARCHAR(64) NOT NULL PRIMARY KEY
 );
