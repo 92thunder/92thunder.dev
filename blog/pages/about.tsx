@@ -1,6 +1,6 @@
-import React from 'react'
+import { NextPage } from 'next'
 
-export const About: React.VFC = () => {
+const About: NextPage = () => {
   return (
     <>
       <dl>
@@ -22,3 +22,5 @@ export const About: React.VFC = () => {
     </>
   )
 }
+
+export default About
