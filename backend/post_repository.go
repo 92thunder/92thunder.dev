@@ -45,27 +45,37 @@ func GetPost(id string) (*Post, error) {
 	return &post, nil
 }
 
-type SavePostRequest struct {
-	Title       string `json:"title" db:"title"`
-	Body        string `json:"body" db:"body"`
-	Published   bool   `json:"published" db:"published"`
-	PublishedAt string `json:"published_at" db:"published_at"`
-}
-
-func SavePost(p *SavePostRequest) (*Post, error) {
+func SavePost(p *Post) (*Post, error) {
 	db.Begin()
-	result, err := db.Exec("INSERT INTO post (title, body, published, published_at) VALUES(?,?,?,?)", p.Title, p.Body, p.Published, p.PublishedAt)
+	_, err := GetPost(string(p.Id))
 	if err != nil {
-		fmt.Println(err)
-		return nil, err
+
+		result, err := db.Exec("INSERT INTO post (title, body, published, published_at) VALUES(?,?,?,?)", p.Title, p.Body, p.Published, p.PublishedAt)
+		if err != nil {
+			fmt.Println(err)
+			return nil, err
+		}
+		var post = new(Post)
+		post.Id, _ = result.LastInsertId()
+		post.Title = p.Title
+		post.Body = p.Body
+		post.Published = p.Published
+		post.PublishedAt = p.PublishedAt
+
+		return post, nil
+	} else {
+		_, err := db.Exec("UPDATE post SET (title, body, published, published_at) = (?,?,?,?) WHERE id = ?", p.Title, p.Body, p.Published, p.PublishedAt, p.Id)
+		if err != nil {
+			fmt.Println(err)
+			return nil, err
+		}
+		var post = new(Post)
+		post.Id = p.Id
+		post.Title = p.Title
+		post.Body = p.Body
+		post.Published = p.Published
+		post.PublishedAt = p.PublishedAt
+
+		return post, nil
 	}
-
-	var post = new(Post)
-	post.Id, _ = result.LastInsertId()
-	post.Title = p.Title
-	post.Body = p.Body
-	post.Published = p.Published
-	post.PublishedAt = p.PublishedAt
-
-	return post, nil
 }

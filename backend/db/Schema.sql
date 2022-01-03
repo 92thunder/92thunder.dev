@@ -6,7 +6,7 @@ CREATE TABLE blog.post (
   title VARCHAR(64) NOT NULL,
   body VARCHAR(4096) NOT NULL,
   published BOOLEAN NOT NULL,
-  published_at DATETIME NOT NULL
+  published_at VARCHAR(32) NOT NULL
 );
 
 DROP TABLE IF EXISTS blog.secret;
