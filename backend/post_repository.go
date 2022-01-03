@@ -29,7 +29,7 @@ func InitDB() {
 
 func GetPosts() []Post {
 	posts := []Post{}
-	err := db.Select(&posts, "SELECT * FROM post WHERE published = true")
+	err := db.Select(&posts, "SELECT * FROM post")
 	if err != nil {
 		fmt.Println(err)
 	}
