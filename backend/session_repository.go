@@ -12,7 +12,7 @@ type Session struct {
 
 func GetSession(id string) (*Session, error) {
 	session := Session{}
-	err := db.Get(&session, "SELECT * FROM session WHERE ?", id)
+	err := db.Get(&session, "SELECT * FROM session WHERE id = ?", id)
 	if err != nil {
 		return nil, err
 	}
