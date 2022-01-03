@@ -33,7 +33,7 @@ func savePost(c echo.Context) error {
 		return c.JSON(http.StatusUnauthorized, err2)
 	}
 
-	p := new(SavePostRequest)
+	p := new(Post)
 	if err := c.Bind(p); err != nil {
 		return err
 	}
