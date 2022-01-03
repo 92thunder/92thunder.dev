@@ -38,7 +38,7 @@ func GetPosts() []Post {
 
 func GetPost(id string) (*Post, error) {
 	post := Post{}
-	err := db.Get(&post, "SELECT * FROM post WHERE published = true AND id = ?", id)
+	err := db.Get(&post, "SELECT * FROM post WHERE id = ?", id)
 	if err != nil {
 		return nil, errors.New("none")
 	}
