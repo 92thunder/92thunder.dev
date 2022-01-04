@@ -10,7 +10,7 @@ import (
 )
 
 type Post struct {
-	Id          int64  `json:"id" db:"id"`
+	Id          string `json:"id" db:"id"`
 	Title       string `json:"title" db:"title"`
 	Body        string `json:"body" db:"body"`
 	Published   bool   `json:"published" db:"published"`
@@ -49,14 +49,13 @@ func SavePost(p *Post) (*Post, error) {
 	db.Begin()
 	_, err := GetPost(string(p.Id))
 	if err != nil {
-
-		result, err := db.Exec("INSERT INTO post (title, body, published, published_at) VALUES(?,?,?,?)", p.Title, p.Body, p.Published, p.PublishedAt)
+		_, err := db.Exec("INSERT INTO post (id, title, body, published, published_at) VALUES(?,?,?,?,?)", p.Id, p.Title, p.Body, p.Published, p.PublishedAt)
 		if err != nil {
 			fmt.Println(err)
 			return nil, err
 		}
 		var post = new(Post)
-		post.Id, _ = result.LastInsertId()
+		post.Id = p.Id
 		post.Title = p.Title
 		post.Body = p.Body
 		post.Published = p.Published
@@ -64,7 +63,7 @@ func SavePost(p *Post) (*Post, error) {
 
 		return post, nil
 	} else {
-		_, err := db.Exec("UPDATE post SET (title, body, published, published_at) = (?,?,?,?) WHERE id = ?", p.Title, p.Body, p.Published, p.PublishedAt, p.Id)
+		_, err := db.Exec("UPDATE post SET title=?, body=?, published=?, published_at=? WHERE id = ?", p.Title, p.Body, p.Published, p.PublishedAt, p.Id)
 		if err != nil {
 			fmt.Println(err)
 			return nil, err
