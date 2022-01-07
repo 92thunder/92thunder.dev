@@ -5,7 +5,7 @@ import { query } from '../libs/db'
 import styles from '../styles/Home.module.css'
 
 export const  getStaticProps: GetStaticProps = async () => {
-  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post')))
+  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true ORDER BY published_at DESC')))
   return {
     props: { posts: results }
   }

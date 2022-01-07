@@ -6,7 +6,7 @@ import { CodeBlock } from '../../components/CodeBlock'
 import { query } from '../../libs/db'
 
 export async function getStaticPaths() {
-  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post')))
+  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true')))
   const paths = results.map((post: any) => `/posts/${post.id}`)
   return { paths, fallback: false }
 }
