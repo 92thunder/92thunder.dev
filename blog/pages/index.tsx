@@ -17,6 +17,12 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<typeof getStaticProps
       <Head>
         <title>92thunder.dev</title>
         <meta name="description" content="Ryota Kunisada@92thunder Blog" />
+        <meta property="og:url" content="https://92thunder.dev" />
+        <meta property="og:type" content="blog" />
+        <meta property="og:title" content="92thunder.dev"></meta>
+        <meta property="og:description" content="Ryota Kunisada@92thunder Blog" />
+        <meta property="og:site_name" content="92thunder.dev" />
+        <meta property="og:image" content="https://92thunder.dev/ogp.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
