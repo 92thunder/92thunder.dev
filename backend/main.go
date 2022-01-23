@@ -11,10 +11,20 @@ import (
 )
 
 func getPosts(c echo.Context) error {
+	isValidAuth, authError := authHeader(c)
+	if !isValidAuth {
+		return c.JSON(http.StatusUnauthorized, authError)
+	}
+
 	return c.JSON(http.StatusOK, GetPosts())
 }
 
 func getPost(c echo.Context) error {
+	isValidAuth, authError := authHeader(c)
+	if !isValidAuth {
+		return c.JSON(http.StatusUnauthorized, authError)
+	}
+
 	p, err := GetPost(c.Param("id"))
 	if err != nil {
 		if err.Error() == "none" {
@@ -24,13 +34,20 @@ func getPost(c echo.Context) error {
 	return c.JSON(http.StatusOK, p)
 }
 
+func authHeader(c echo.Context) (bool, error) {
+	s := c.Request().Header.Get("session_id")
+	_, err := GetSession(s)
+	if err != nil {
+		log.Println(err)
+		return false, err
+	}
+	return true, nil
+}
+
 func savePost(c echo.Context) error {
-	// auth
-	auth := c.Request().Header.Get("session_id")
-	_, err2 := GetSession(auth)
-	if err2 != nil {
-		log.Println(err2)
-		return c.JSON(http.StatusUnauthorized, err2)
+	isValidAuth, authError := authHeader(c)
+	if !isValidAuth {
+		return c.JSON(http.StatusUnauthorized, authError)
 	}
 
 	p := new(Post)
