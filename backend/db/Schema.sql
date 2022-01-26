@@ -9,11 +9,13 @@ CREATE TABLE blog.post (
   published_at VARCHAR(32) NOT NULL
 );
 
-DROP TABLE IF EXISTS blog.secret;
-CREATE TABLE blog.secret (
+DROP TABLE IF EXISTS blog.account;
+CREATE TABLE blog.account (
   secret VARCHAR(64) NOT NULL PRIMARY KEY,
   name VARCHAR(64) NOT NULL,
-  url VARCHAR(256) NOT NULL
+  url VARCHAR(256) NOT NULL,
+  failed_count int(11) DEFAULT NULL,
+  locked_at DATETIME DEFAULT NULL
 );
 
 DROP TABLE IF EXISTS blog.session;
