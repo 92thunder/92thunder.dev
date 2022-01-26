@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -10,11 +11,27 @@ import (
 	"github.com/pquerna/otp/totp"
 )
 
+const (
+	signInFailedLimit       = 5
+	signInLockPeriodMinutes = 10
+	accountName             = "r.kunisada661@gmail.com"
+)
+
 func getPosts(c echo.Context) error {
+	isValidAuth, authError := authHeader(c)
+	if !isValidAuth {
+		return c.JSON(http.StatusUnauthorized, authError)
+	}
+
 	return c.JSON(http.StatusOK, GetPosts())
 }
 
 func getPost(c echo.Context) error {
+	isValidAuth, authError := authHeader(c)
+	if !isValidAuth {
+		return c.JSON(http.StatusUnauthorized, authError)
+	}
+
 	p, err := GetPost(c.Param("id"))
 	if err != nil {
 		if err.Error() == "none" {
@@ -24,13 +41,20 @@ func getPost(c echo.Context) error {
 	return c.JSON(http.StatusOK, p)
 }
 
+func authHeader(c echo.Context) (bool, error) {
+	s := c.Request().Header.Get("session_id")
+	_, err := GetSession(s)
+	if err != nil {
+		log.Println(err)
+		return false, err
+	}
+	return true, nil
+}
+
 func savePost(c echo.Context) error {
-	// auth
-	auth := c.Request().Header.Get("session_id")
-	_, err2 := GetSession(auth)
-	if err2 != nil {
-		log.Println(err2)
-		return c.JSON(http.StatusUnauthorized, err2)
+	isValidAuth, authError := authHeader(c)
+	if !isValidAuth {
+		return c.JSON(http.StatusUnauthorized, authError)
 	}
 
 	p := new(Post)
@@ -54,8 +78,23 @@ func signIn(c echo.Context) error {
 		return err
 	}
 
-	secret, err := GetSecret()
-	valid := totp.Validate(req.Passcode, secret)
+	account, err := GetAccount(accountName)
+	if err != nil {
+		log.Fatal((err))
+	}
+	if account.LockedAt != "" {
+		now := time.Now()
+		format := "2006-01-02 15:04:05"
+		lockedTime, _ := time.Parse(format, account.LockedAt)
+		unlockTime := lockedTime.Add(time.Duration(signInLockPeriodMinutes) * time.Minute)
+		if unlockTime.After(now) {
+			UnLock(accountName)
+		} else {
+			return c.JSON(http.StatusBadRequest, "Account is locked. Wait 10 minutes.")
+		}
+	}
+
+	valid := totp.Validate(req.Passcode, account.LockedAt)
 	if valid {
 		u, err := SaveSession()
 		if err != nil {
@@ -63,6 +102,13 @@ func signIn(c echo.Context) error {
 		}
 		return c.JSON(http.StatusOK, u)
 	} else {
+		f, err := IncrementFailedCount(accountName)
+		if err != nil {
+			log.Fatal((err))
+		}
+		if signInFailedLimit < f {
+			Lock(accountName)
+		}
 		return c.JSON(http.StatusBadRequest, err)
 	}
 }
@@ -72,17 +118,17 @@ func main() {
 	defer db.Close()
 
 	// Secretが無ければ生成する
-	_, err := GetSecret()
+	_, err := GetAccount(accountName)
 	if err != nil {
 		log.Println(err)
 		key, err := totp.Generate(totp.GenerateOpts{
 			Issuer:      "92thunder.dev",
-			AccountName: "r.kunisada661@gmail.com",
+			AccountName: accountName,
 		})
 		if err != nil {
 			log.Fatal(err)
 		}
-		SaveSecret(key.Secret(), key.AccountName(), key.URL())
+		SaveAccount(key.Secret(), key.AccountName(), key.URL())
 	}
 
 	// Echo instance
