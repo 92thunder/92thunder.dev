@@ -94,7 +94,7 @@ func signIn(c echo.Context) error {
 		}
 	}
 
-	valid := totp.Validate(req.Passcode, account.LockedAt)
+	valid := totp.Validate(req.Passcode, account.Secret)
 	if valid {
 		u, err := SaveSession()
 		if err != nil {
