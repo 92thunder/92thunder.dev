@@ -1,5 +1,6 @@
 {
   "name": "blog",
+  "homepage": "https://92thunder.dev/editor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
