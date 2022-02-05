@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS blog.post;
 CREATE TABLE blog.post (
   id VARCHAR(64) NOT NULL PRIMARY KEY,
   title VARCHAR(64) NOT NULL,
-  body VARCHAR(4096) NOT NULL,
+  body TEXT NOT NULL,
   published BOOLEAN NOT NULL,
   published_at VARCHAR(32) NOT NULL
 );
