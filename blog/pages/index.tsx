@@ -3,9 +3,12 @@ import Head from 'next/head'
 import { Posts } from '../components/Posts'
 import { query } from '../libs/db'
 import styles from '../styles/Home.module.css'
+import { Post } from '../types'
+import { generateFeed } from '../libs/generateFeed'
 
 export const  getStaticProps: GetStaticProps = async () => {
-  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true ORDER BY published_at DESC')))
+  const results: Post[] = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true ORDER BY published_at DESC')))
+  generateFeed(results)
   return {
     props: { posts: results }
   }

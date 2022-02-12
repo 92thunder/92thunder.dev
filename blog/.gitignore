@@ -35,3 +35,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# feeds
+/public/feeds/atom.xml
+/public/feeds/feed.json
+/public/feeds/feed.xml
