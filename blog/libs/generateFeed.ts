@@ -4,7 +4,7 @@ import { Post } from '../types'
 import { marked } from 'marked'
 
 export const generateFeed = (posts: Post[]) =>  {
-  const baseUrl = 'https://92thunder.dev'
+  const baseUrl = 'https://92thunder.dev/'
   const date = new Date()
 
   const author = {
@@ -23,9 +23,9 @@ export const generateFeed = (posts: Post[]) =>  {
     copyright: `All rights reserved ${date.getFullYear()}, ${author.name}`,
     updated: date,
     feedLinks: {
-      rss2: `${baseUrl}/rss/feed.xml`,
-      json: `${baseUrl}/rss/feed.json`,
-      atom: `${baseUrl}/rss/atom.xml`,
+      rss2: `${baseUrl}/feeds/feed.xml`,
+      json: `${baseUrl}/feeds/feed.json`,
+      atom: `${baseUrl}/feeds/atom.xml`,
     },
     author: author,
   })
