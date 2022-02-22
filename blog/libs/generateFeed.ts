@@ -4,7 +4,7 @@ import { Post } from '../types'
 import { marked } from 'marked'
 
 export const generateFeed = (posts: Post[]) =>  {
-  const baseUrl = 'https://92thunder.dev/'
+  const baseUrl = 'https://92thunder.dev'
   const date = new Date()
 
   const author = {
@@ -16,7 +16,7 @@ export const generateFeed = (posts: Post[]) =>  {
   const feed = new Feed({
     title: '92thunder.dev',
     description: 'Ryota Kunisada@92thunder Blog',
-    id: baseUrl,
+    id: baseUrl + '/',
     link: baseUrl,
     language: 'ja',
     image: `${baseUrl}/ogp.png`,
