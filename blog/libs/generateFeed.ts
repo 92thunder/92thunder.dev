@@ -4,7 +4,7 @@ import { Post } from '../types'
 import { marked } from 'marked'
 
 export const generateFeed = (posts: Post[]) =>  {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
+  const baseUrl = 'https://92thunder.dev'
   const date = new Date()
 
   const author = {
@@ -14,8 +14,8 @@ export const generateFeed = (posts: Post[]) =>  {
   }
 
   const feed = new Feed({
-    title: process.env.NEXT_PUBLIC_BASE_NAME || '',
-    description: process.env.NEXT_PUBLIC_BASE_DISC,
+    title: '92thunder.dev',
+    description: 'Ryota Kunisada@92thunder Blog',
     id: baseUrl,
     link: baseUrl,
     language: 'ja',
