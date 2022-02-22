@@ -11,7 +11,7 @@ export const Header: React.VFC = () => {
     window.location.href = '/about'
   }
   const handleClickGithub = () => {
-    window.location.href = 'https://github.com/92thunder/blog'
+    window.location.href = 'https://github.com/92thunder/92thunder.dev'
   }
   return (
     <StyledAppBar position="static">
