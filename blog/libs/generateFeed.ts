@@ -44,7 +44,7 @@ export const generateFeed = (posts: Post[]) =>  {
   })
 
   fs.mkdirSync('./public/feeds', { recursive: true })
-  fs.writeFileSync('./public/feeds/feed.xml', feed.rss2())
-  fs.writeFileSync('./public/feeds/atom.xml', feed.atom1())
-  fs.writeFileSync('./public/feeds/feed.json', feed.json1())
+  fs.writeFileSync('./public/feeds/feed.xml', feed.rss2(), 'utf-8')
+  fs.writeFileSync('./public/feeds/atom.xml', feed.atom1(), 'utf-8')
+  fs.writeFileSync('./public/feeds/feed.json', feed.json1(), 'utf-8')
 }

@@ -27,8 +27,8 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<typeof getStaticProps
         <meta property="og:site_name" content="92thunder.dev" />
         <meta property="og:image" content="https://92thunder.dev/ogp.png" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="alternate" type="application/atom+xml" title="92thunder.dev" href="/feeds/atom.xml" />
-        <link rel="alternate" type="application/rss+xml" title="92thunder.dev" href="/feeds/feed.xml" />
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="https://92thunder.dev/feeds/atom.xml" />
+        <link rel="alternate" type="application/rss+xml" title="RSS2.0" href="https://92thunder.dev/feeds/feed.xml" />
       </Head>
 
       <main className={styles.main}>
