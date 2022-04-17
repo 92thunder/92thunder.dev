@@ -5,10 +5,11 @@ import remarkGfm from 'remark-gfm'
 import { CodeBlock } from '../../components/CodeBlock'
 import { query } from '../../libs/db'
 import Head from 'next/head'
+import { Post } from '../../types'
 
 export async function getStaticPaths() {
-  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true')))
-  const paths = results.map((post: any) => `/posts/${post.id}`)
+  const results: Post[] = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true')))
+  const paths = results.map((post) => `/posts/${post.id}`)
   return { paths, fallback: false }
 }
 
