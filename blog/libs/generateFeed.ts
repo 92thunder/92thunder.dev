@@ -38,7 +38,6 @@ export const generateFeed = (posts: Post[]) =>  {
       description: description,
       id: url,
       link: url,
-      content: marked(post.body),
       date: new Date(post.published_at),
     })
   })
