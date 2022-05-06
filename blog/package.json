@@ -29,7 +29,7 @@
     "eslint": "8.14.0",
     "eslint-config-next": "12.0.7",
     "feed": "^4.2.2",
-    "marked": "4.0.14",
+    "marked": "4.0.15",
     "typescript": "4.6.4"
   }
 }
