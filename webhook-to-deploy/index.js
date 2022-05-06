@@ -1,10 +1,12 @@
 const PORT = process.env.PORT || 8080
 const SECRET = process.env.SECRET
+const COMMAND = process.env.COMMAND || 'echo test'
 const http = require('http')
 const createHandler = require('github-webhook-handler')
+const { exec } = require('child_process')
 
 const handler = createHandler({
-  path: '/',
+  path: '/webhook',
   secret: SECRET
 })
 
@@ -20,8 +22,16 @@ handler.on('error', function (err) {
 })
 
 handler.on('push', function (event) {
-  if (event.repository.name === '92thunder.dev') {
-    console.log(event)
-    console.log(event.repository.ref)
+  const payload = event.payload
+  const repoName = payload.repository.name
+  const branch = payload.ref.split('/').pop()
+  if (repoName === '92thunder.dev' && branch === 'main') {
+    exec(COMMAND, (err, stdout, stderr) => {
+      if (err) {
+        console.log(`stderr: ${stderr}`)
+        return
+      }
+      console.log(`stdout: ${stdout}`)
+    })
   }
 })
