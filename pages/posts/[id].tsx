@@ -3,12 +3,12 @@ import { Box, Typography } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { CodeBlock } from '../../components/CodeBlock'
-import { query } from '../../libs/db'
+import { getPost, getPosts } from '../../libs/postRepository'
 import Head from 'next/head'
 import { Post } from '../../types'
 
 export async function getStaticPaths() {
-  const results: Post[] = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true')))
+  const results: Post[] = await getPosts()
   const paths = results.map((post) => `/posts/${post.id}`)
   return { paths, fallback: false }
 }
@@ -19,9 +19,9 @@ export const  getStaticProps: GetStaticProps = async (context) => {
   }
 
   const id = context.params.id
-  const results = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE id = ?', id)))
+  const post = await getPost(id)
   return {
-    props: { post: results[0] }
+    props: { post }
   }
 }
 

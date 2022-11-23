@@ -1,13 +1,13 @@
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 import Head from 'next/head'
 import { Posts } from '../components/Posts'
-import { query } from '../libs/db'
+import { getPosts } from '../libs/postRepository'
 import styles from '../styles/Home.module.css'
 import { Post } from '../types'
 import { generateFeed } from '../libs/generateFeed'
 
 export const  getStaticProps: GetStaticProps = async () => {
-  const results: Post[] = JSON.parse(JSON.stringify(await query('SELECT * FROM post WHERE published = true ORDER BY published_at DESC')))
+  const results: Post[] = await getPosts()
   generateFeed(results)
   return {
     props: { posts: results }
