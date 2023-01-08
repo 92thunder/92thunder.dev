@@ -7,6 +7,12 @@ type PostInfo= {
 
 export const postsInfo: PostInfo[] = [
 	{
+		id: "eslint-plugin-query",
+		title: "ESLint Plugin Query",
+		mdFilename: "2023-01-09.md",
+		publishedAt: "2023-01-09 01:00:00"
+	},
+	{
 		id: "8e3e28ed-2b71-4900-a6eb-838e2c48fec2",
 		title: "2022年の抱負",
 		mdFilename: "2022-01-15.md",
