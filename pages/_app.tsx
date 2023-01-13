@@ -28,5 +28,5 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp
 
 const Container = styled.div`
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
 `
