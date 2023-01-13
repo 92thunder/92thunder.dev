@@ -16,3 +16,7 @@ body {
 code:not([class]) {
   color: darkred ;
 }
+
+hr {
+  color: lightgray;
+}
