@@ -10,7 +10,7 @@ const PostCard: React.VFC<{ post: Post }> = ({ post }) => {
     : null
 
   return (
-    <Link href={`/posts/${post.id}`} passHref>
+    <StyledLink href={`/posts/${post.id}`} passHref>
       <StyledCard >
         <CardContent>
           <Grid container spacing={2} direction="column">
@@ -29,7 +29,7 @@ const PostCard: React.VFC<{ post: Post }> = ({ post }) => {
           </Grid>
         </CardContent>
       </StyledCard> 
-    </Link>
+    </StyledLink>
   )
 }
 
@@ -48,4 +48,7 @@ export const Posts: React.VFC<{posts: Post[]}> = ({posts}) => {
 
 const StyledCard = styled(Card)`
   cursor: pointer;
+`
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `
