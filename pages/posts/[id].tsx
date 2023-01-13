@@ -39,7 +39,7 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
         <meta property="og:site_name" content="92thunder.dev" />
         <meta property="og:image" content="https://92thunder.dev/ogp.png" />
       </Head>
-      <Box m={4}>
+      <Box>
         <Typography variant="h4">{post.title}</Typography>
         <ReactMarkdown
           plugins={[remarkGfm]}
