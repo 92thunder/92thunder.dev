@@ -6,6 +6,12 @@ type PostInfo= {
 }
 
 export const postsInfo: PostInfo[] = [
+	{
+		id: "codeowners",
+		title: "モノレポを支える技術 - CODEOWNERS",
+		mdFilename: "2023-03-28.md",
+		publishedAt: "2023-03-29 02:00:00"
+	},
 	// {
 	// 	id: "power-facilitation",
 	// 	title: "エンジニアも読んで欲しい！ファシリテーション本！",
