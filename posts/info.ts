@@ -6,6 +6,12 @@ type PostInfo= {
 }
 
 export const postsInfo: PostInfo[] = [
+	// {
+	// 	id: "power-facilitation",
+	// 	title: "エンジニアも読んで欲しい！ファシリテーション本！",
+	// 	mdFilename: "2023-02-06.md",
+	// 	publishedAt: "2023-02-06 01:00:00"
+	// },
 	{
 		id: "eslint-plugin-query",
 		title: "ESLint Plugin Query",
