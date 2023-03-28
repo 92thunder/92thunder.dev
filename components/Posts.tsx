@@ -38,7 +38,7 @@ export const Posts: React.VFC<{posts: Post[]}> = ({posts}) => {
   return (
     <Grid container direction="column" spacing={6}>
       {posts.map((post) => (
-        <Grid item key={post.id}>
+        <Grid item key={post.id} maxWidth="100% !important">
           <PostCard post={post} />
         </Grid>
       ))}
