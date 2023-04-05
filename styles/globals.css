@@ -13,6 +13,18 @@ body {
   box-sizing: border-box;
 }
 
+h2 {
+  margin-top: 2rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+}
+
+p, li {
+  line-height: 1.5;
+}
+
 code:not([class]) {
   color: darkred ;
 }
