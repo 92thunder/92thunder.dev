@@ -20,3 +20,9 @@ code:not([class]) {
 hr {
   color: lightgray;
 }
+
+blockquote {
+  border-left: 2px solid gray;
+  padding-left: 12px;
+  margin-left: 0;
+}
