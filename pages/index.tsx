@@ -16,7 +16,7 @@ export const  getStaticProps: GetStaticProps = async () => {
 
 const Home: NextPage = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>92thunder.dev</title>
         <meta name="description" content="Ryota Kunisada@92thunder Blog" />
@@ -34,7 +34,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<typeof getStaticProps
       <main className={styles.main}>
         <Posts posts={posts}></Posts>
       </main>
-    </div>
+    </>
   )
 }
 

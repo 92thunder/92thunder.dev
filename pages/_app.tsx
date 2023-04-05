@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Header } from '../components/Header'
-import { createTheme, ThemeProvider } from '@mui/material'
+import { Container, createTheme, ThemeProvider } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import styled from '@emotion/styled'
 
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Container>
+      <Container sx={{ padding: "2rem 0" }} maxWidth="md">
         <Component {...pageProps} />
       </Container>
     </ThemeProvider>
@@ -26,7 +26,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp
-
-const Container = styled.div`
-  padding: 2rem 2rem;
-`
