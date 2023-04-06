@@ -15,7 +15,7 @@ export const Header: React.VFC = () => {
   }
   return (
     <AppBar position="static">
-      <Container maxWidth="md" sx={{padding: "0.5rem 0"}}>
+      <Container maxWidth="lg" sx={{padding: "0.5rem 0"}}>
         <Stack direction="row" alignItems="center">
           <Title variant="h5" onClick={handleClickTitle}>
             92thunder.dev
