@@ -9,6 +9,7 @@ import { Post } from '../../types'
 import { TableOfContents } from '../../components/TableOfContents'
 import React from 'react'
 import { HeadingComponent } from 'react-markdown/lib/ast-to-react'
+import { getHeadingId } from '../../libs/getHeadings'
 
 export async function getStaticPaths() {
   const results: Post[] = await getPosts()
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 const HeadingRenderer: HeadingComponent = (props) => {
   const children = React.Children.toArray(props.children)
   const text = children
-  const slug = text
+  const slug = getHeadingId(`${text}`)
   return React.createElement('h' + props.level, {id: slug}, props.children)
 }
 
