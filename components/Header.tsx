@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
     <AppBar position="static">
       <Container maxWidth="lg" sx={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
         <Stack direction="row" alignItems="center">
-          <Title variant="h5" onClick={handleClickTitle}>
+          <Title variant="h1" onClick={handleClickTitle} fontWeight="bold" fontSize="1.5rem">
             92thunder.dev
           </Title>
           <Button color="inherit" onClick={handleClickAbout}>
