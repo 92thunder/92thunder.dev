@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Container sx={{ padding: "2rem 0" }} maxWidth="lg">
+      <Container sx={{ paddingTop: "1rem" }} maxWidth="lg">
         <Component {...pageProps} />
       </Container>
     </ThemeProvider>
