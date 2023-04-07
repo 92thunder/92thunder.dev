@@ -3,7 +3,7 @@ import { AppBar, Typography, IconButton, Button, Container, Stack } from '@mui/m
 import { GitHub } from '@mui/icons-material'
 import styled from '@emotion/styled'
 
-export const Header: React.VFC = () => {
+export const Header: React.FC = () => {
   const handleClickTitle = () => {
     window.location.href = '/'
   }

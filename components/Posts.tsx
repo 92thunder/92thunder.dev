@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import { Post } from '../types'
 import Link from 'next/link'
 
-const PostCard: React.VFC<{ post: Post }> = ({ post }) => {
+const PostCard: React.FC<{ post: Post }> = ({ post }) => {
   const bodyPreview = post.body.includes('---')
     ? post.body.split('---')[0]
     : null
@@ -34,7 +34,7 @@ const PostCard: React.VFC<{ post: Post }> = ({ post }) => {
 }
 
 
-export const Posts: React.VFC<{posts: Post[]}> = ({posts}) => {
+export const Posts: React.FC<{posts: Post[]}> = ({posts}) => {
   return (
     <Grid container direction="column" spacing={6}>
       {posts.map((post) => (
