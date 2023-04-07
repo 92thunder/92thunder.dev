@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Grid } from '@mui/material'
+import { Card, CardContent, Typography, Grid, Stack, Box } from '@mui/material'
 import React from 'react'
 import styled from '@emotion/styled'
 import { Post } from '../types'
@@ -13,20 +13,16 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
     <StyledLink href={`/posts/${post.id}`} passHref>
       <StyledCard >
         <CardContent>
-          <Grid container spacing={2} direction="column">
-            <Grid item>
-              <Typography variant="h5">
-                {post.title}
-              </Typography>
-            </Grid>
+          <Stack gap={2} direction="column">
+            <Typography variant="h5">
+              {post.title}
+            </Typography>
             {bodyPreview && (
-              <Grid item>
-                <Typography>
-                  {bodyPreview}
-                </Typography>
-              </Grid>
+              <Typography>
+                {bodyPreview}
+              </Typography>
             )}
-          </Grid>
+          </Stack>
         </CardContent>
       </StyledCard> 
     </StyledLink>
@@ -36,13 +32,11 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
 
 export const Posts: React.FC<{posts: Post[]}> = ({posts}) => {
   return (
-    <Grid container direction="column" spacing={6}>
+    <Stack direction="column" gap={6}>
       {posts.map((post) => (
-        <Grid item key={post.id} maxWidth="100% !important">
-          <PostCard post={post} />
-        </Grid>
+        <PostCard key={post.id} post={post} />
       ))}
-    </Grid>
+    </Stack>
   )
 }
 
@@ -51,4 +45,6 @@ const StyledCard = styled(Card)`
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
+  max-width: 100%;
+  min-width: none;
 `
