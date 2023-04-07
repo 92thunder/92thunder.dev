@@ -15,7 +15,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
         <CardContent>
           <Grid container spacing={2} direction="column">
             <Grid item>
-              <Typography variant="h5">
+              <Typography variant="h5" component="p">
                 {post.title}
               </Typography>
             </Grid>

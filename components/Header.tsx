@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
           <Button color="inherit" onClick={handleClickAbout}>
             ABOUT
           </Button>
-          <IconButton color="inherit" onClick={handleClickGithub}>
+          <IconButton color="inherit" onClick={handleClickGithub} aria-label="Github Repository">
             <GitHub/>
           </IconButton>
         </Stack>
