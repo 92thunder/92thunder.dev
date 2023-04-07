@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { getHeadings } from "../libs/getHeadings"
-import NextLink from "next/link"
 import { Card, CardContent, Link, List, ListItem } from "@mui/material"
 
 export const TableOfContents: FC<{ markdown: string }> = ({ markdown }) => {
@@ -18,11 +17,9 @@ export const TableOfContents: FC<{ markdown: string }> = ({ markdown }) => {
 					<List>
 						{headings.map((heading) => (
 							<ListItem key={heading.text}>
-								<NextLink href={`#${heading.text}`} passHref legacyBehavior>
-									<Link fontSize={12}>
-										{heading.text}
-									</Link>
-								</NextLink>
+								<Link fontSize={12} href={`#${heading.text}`}>
+									{heading.text}
+								</Link>
 							</ListItem>
 						))}
 					</List>
