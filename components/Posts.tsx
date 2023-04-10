@@ -11,9 +11,17 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
 
   return (
     <StyledLink href={`/posts/${post.id}`} passHref>
-      <StyledCard >
-        <CardContent>
-          <Grid container spacing={2} direction="column">
+      <Card sx={{
+        ':hover': {
+          boxShadow: 4,
+        }
+      }}>
+        <CardContent sx={{
+          '&:last-child': {
+            paddingBottom: 2,
+          }
+        }}>
+          <Grid container gap={2} direction="column">
             <Grid item>
               <Typography variant="h5" component="p">
                 {post.title}
@@ -28,7 +36,7 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
             )}
           </Grid>
         </CardContent>
-      </StyledCard> 
+      </Card> 
     </StyledLink>
   )
 }
@@ -46,9 +54,6 @@ export const Posts: React.FC<{posts: Post[]}> = ({posts}) => {
   )
 }
 
-const StyledCard = styled(Card)`
-  cursor: pointer;
-`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `
