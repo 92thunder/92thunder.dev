@@ -1,31 +1,27 @@
 import React from 'react'
-import { AppBar, Typography, IconButton, Button, Container, Stack } from '@mui/material'
+import { AppBar, Typography, IconButton, Button, Container, Stack, Box } from '@mui/material'
 import { GitHub } from '@mui/icons-material'
 import styled from '@emotion/styled'
+import NextLink from 'next/link'
 
 export const Header: React.FC = () => {
-  const handleClickTitle = () => {
-    window.location.href = '/'
-  }
-  const handleClickAbout = () => {
-    window.location.href = '/about'
-  }
-  const handleClickGithub = () => {
-    window.location.href = 'https://github.com/92thunder/92thunder.dev'
-  }
   return (
     <AppBar position="static">
       <Container maxWidth="lg" sx={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-        <Stack direction="row" alignItems="center">
-          <Title variant="h1" onClick={handleClickTitle} fontWeight="bold" fontSize="1.5rem">
-            92thunder.dev
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+          <Title variant="h1" fontWeight="bold" fontSize="1.5rem">
+            <NextLink href="/">
+              92thunder.dev
+            </NextLink>
           </Title>
-          <Button color="inherit" onClick={handleClickAbout}>
-            ABOUT
-          </Button>
-          <IconButton color="inherit" onClick={handleClickGithub} aria-label="Github Repository">
-            <GitHub/>
-          </IconButton>
+          <Box>
+            <Button color="inherit" href="/about">
+              ABOUT
+            </Button>
+            <IconButton color="inherit" href="https://github.com/92thunder/92thunder.dev" aria-label="Github Repository">
+              <GitHub/>
+            </IconButton>
+          </Box>
         </Stack>
       </Container>
     </AppBar>
@@ -33,6 +29,9 @@ export const Header: React.FC = () => {
 }
 
 const Title = styled(Typography)`
-  flex: 1;
-  cursor: pointer;
+  a {
+    text-decoration: none;
+    color: inherit;
+    vertical-align: middle
+  }
 `
