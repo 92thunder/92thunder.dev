@@ -22,10 +22,17 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
           }
         }}>
           <Grid container gap={2} direction="column">
-            <Grid item>
-              <Typography variant="h5" component="p">
-                {post.title}
-              </Typography>
+            <Grid container justifyContent="space-between" >
+              <Grid item>
+                <Typography variant="h5" component="p">
+                  {post.title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="body1" component="p">
+                  {post.publishedAt}
+                </Typography>
+                </Grid>
             </Grid>
             {bodyPreview && (
               <Grid item>

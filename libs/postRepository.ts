@@ -2,6 +2,10 @@ import { Post } from "../types"
 import { postsInfo } from '../posts/info';
 import { readFile } from "fs/promises";
 
+const toDisplayDate = (dateString: string) => {
+  return dateString.slice(0, 10).replace(/-/g, '/')
+}
+
 export async function getPosts(): Promise<Post[]> {
   const posts: Post[] = []
   for (const postInfo of postsInfo) {
@@ -10,7 +14,7 @@ export async function getPosts(): Promise<Post[]> {
     posts.push({
       id: postInfo.id,
       title: postInfo.title,
-      publishedAt: postInfo.publishedAt,
+      publishedAt: toDisplayDate(postInfo.publishedAt),
       body
     })
   }
@@ -27,7 +31,7 @@ export async function getPost(id: string | string[] | undefined): Promise<Post> 
   return {
     id: postInfo.id,
     title: postInfo.title,
-    publishedAt: postInfo.publishedAt,
+    publishedAt: toDisplayDate(postInfo.publishedAt),
     body
   }
 }
