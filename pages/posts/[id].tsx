@@ -1,5 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Grid, Stack, Typography } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { CodeBlock } from '../../components/CodeBlock'
@@ -50,7 +50,8 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
         <meta property="og:site_name" content="92thunder.dev" />
         <meta property="og:image" content="https://92thunder.dev/ogp.png" />
       </Head>
-      <Typography variant="h4">{post.title}</Typography>
+      <Typography variant="h4" component="h1">{post.title}</Typography>
+      <Typography variant="body1">{post.publishedAt}</Typography>
       <Stack direction="row" gap={2}>
         <Box>
           <ReactMarkdown
