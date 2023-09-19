@@ -50,8 +50,10 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
         <meta property="og:site_name" content="92thunder.dev" />
         <meta property="og:image" content="https://92thunder.dev/ogp.png" />
       </Head>
-      <Typography variant="h4" component="h1">{post.title}</Typography>
-      <Typography variant="body1">{post.publishedAt}</Typography>
+      <Stack direction="column" gap={2}>
+        <Typography variant="body1">{post.publishedAt}</Typography>
+        <Typography variant="h4" component="h1" fontWeight="bold">{post.title}</Typography>
+      </Stack>
       <Stack direction="row" gap={2}>
         <Box>
           <ReactMarkdown
