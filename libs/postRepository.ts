@@ -1,9 +1,9 @@
 import { Post } from "../types"
 import { postsInfo } from '../posts/info';
-import { readFile } from "fs/promises";
+import { readFile } from "node:fs/promises";
 
 const toDisplayDate = (dateString: string) => {
-  return dateString.slice(0, 10).replace(/-/g, '/')
+  return dateString.slice(0, 10).replaceAll('-', '/')
 }
 
 export async function getPosts(): Promise<Post[]> {
@@ -12,10 +12,10 @@ export async function getPosts(): Promise<Post[]> {
     const filePath = new URL(`../posts/${postInfo.mdFilename}`, import.meta.url)
     const body = await readFile(filePath, {encoding: 'utf8'})
     posts.push({
+      body,
       id: postInfo.id,
-      title: postInfo.title,
       publishedAt: toDisplayDate(postInfo.publishedAt),
-      body
+      title: postInfo.title
     })
   }
   return posts
@@ -29,9 +29,9 @@ export async function getPost(id: string | string[] | undefined): Promise<Post> 
   const filePath = new URL(`../posts/${postInfo.mdFilename}`, import.meta.url)
   const body = await readFile(filePath, {encoding: 'utf8'})
   return {
+    body,
     id: postInfo.id,
-    title: postInfo.title,
     publishedAt: toDisplayDate(postInfo.publishedAt),
-    body
+    title: postInfo.title
   }
 }

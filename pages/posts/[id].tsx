@@ -14,7 +14,7 @@ import { getHeadingId } from '../../libs/getHeadings'
 export async function getStaticPaths() {
   const results: Post[] = await getPosts()
   const paths = results.map((post) => `/posts/${post.id}`)
-  return { paths, fallback: false }
+  return { fallback: false, paths }
 }
 
 const HeadingRenderer: HeadingComponent = (props) => {
@@ -42,29 +42,29 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
     <>
       <Head>
         <title>{post.title}</title>
-        <meta name="description" content={description} />
-        <meta property="og:url" content={`https://92thunder.dev/posts/${post.id}`} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.title}></meta>
-        <meta property="og:description" content={description} />
-        <meta property="og:site_name" content="92thunder.dev" />
-        <meta property="og:image" content="https://92thunder.dev/ogp.png" />
+        <meta content={description} name="description" />
+        <meta content={`https://92thunder.dev/posts/${post.id}`} property="og:url" />
+        <meta content="article" property="og:type" />
+        <meta content={post.title} property="og:title"></meta>
+        <meta content={description} property="og:description" />
+        <meta content="92thunder.dev" property="og:site_name" />
+        <meta content="https://92thunder.dev/ogp.png" property="og:image" />
       </Head>
       <Stack direction="column" gap={2}>
         <Typography variant="body1">{post.publishedAt}</Typography>
-        <Typography variant="h4" component="h1" fontWeight="bold">{post.title}</Typography>
+        <Typography component="h1" fontWeight="bold" variant="h4">{post.title}</Typography>
       </Stack>
       <Stack direction="row" gap={2}>
         <Box>
           <ReactMarkdown
-            plugins={[remarkGfm]}
-            skipHtml={false}
             components={{
               code: CodeBlock,
               h1: HeadingRenderer,
               h2: HeadingRenderer,
               h3: HeadingRenderer,
             }}
+            plugins={[remarkGfm]}
+            skipHtml={false}
           >
             {post.body}
           </ReactMarkdown>

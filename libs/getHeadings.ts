@@ -6,7 +6,7 @@ type Heading = {
 }
 
 export const getHeadingId = (text: string): string => {
-	return text.replace(/\s+/g, "")
+	return text.replaceAll(/\s+/g, "")
 }
 
 export const getHeadings = (markdown: string): Heading[] => {

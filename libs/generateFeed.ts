@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { Feed } from 'feed'
 import { Post } from '../types'
 
@@ -7,42 +7,42 @@ export const generateFeed = (posts: Post[]) =>  {
   const date = new Date()
 
   const author = {
-    name: 'Ryota Kunisada',
     email: 'r.kunisada661@gmail.com',
     link: baseUrl,
+    name: 'Ryota Kunisada',
   }
 
   const feed = new Feed({
-    title: '92thunder.dev',
-    description: 'Ryota Kunisada@92thunder Blog',
-    id: baseUrl + '/',
-    link: baseUrl,
-    language: 'ja',
-    image: `${baseUrl}/ogp.png`,
+    author,
     copyright: `All rights reserved ${date.getFullYear()}, ${author.name}`,
-    updated: date,
+    description: 'Ryota Kunisada@92thunder Blog',
     feedLinks: {
-      rss2: `${baseUrl}/feeds/feed.xml`,
-      json: `${baseUrl}/feeds/feed.json`,
       atom: `${baseUrl}/feeds/atom.xml`,
+      json: `${baseUrl}/feeds/feed.json`,
+      rss2: `${baseUrl}/feeds/feed.xml`,
     },
-    author: author,
+    id: baseUrl + '/',
+    image: `${baseUrl}/ogp.png`,
+    language: 'ja',
+    link: baseUrl,
+    title: '92thunder.dev',
+    updated: date,
   })
 
   posts.forEach((post) => {
     const description: string = post.body.split('\n')[0] || post.title
     const url = `${baseUrl}/posts/${post.id}`
     feed.addItem({
-      title: post.title,
-      description: description,
+      date: new Date(post.publishedAt),
+      description,
       id: url,
       link: url,
-      date: new Date(post.publishedAt),
+      title: post.title,
     })
   })
 
   fs.mkdirSync('./public/feeds', { recursive: true })
-  fs.writeFileSync('./public/feeds/feed.xml', feed.rss2(), 'utf-8')
-  fs.writeFileSync('./public/feeds/atom.xml', feed.atom1(), 'utf-8')
-  fs.writeFileSync('./public/feeds/feed.json', feed.json1(), 'utf-8')
+  fs.writeFileSync('./public/feeds/feed.xml', feed.rss2(), 'utf8')
+  fs.writeFileSync('./public/feeds/atom.xml', feed.atom1(), 'utf8')
+  fs.writeFileSync('./public/feeds/feed.json', feed.json1(), 'utf8')
 }

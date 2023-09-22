@@ -21,15 +21,15 @@ const PostCard: React.FC<{ post: Post }> = ({ post }) => {
             paddingBottom: 2,
           }
         }}>
-          <Grid container gap={2} direction="column">
+          <Grid container direction="column" gap={2}>
             <Grid container justifyContent="space-between" >
               <Grid item>
-                <Typography variant="h5" component="p" fontWeight="bold">  
+                <Typography component="p" fontWeight="bold" variant="h5">  
                   {post.title}
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography variant="body1" component="p">
+                <Typography component="p" variant="body1">
                   {post.publishedAt}
                 </Typography>
                 </Grid>

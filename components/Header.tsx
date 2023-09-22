@@ -7,9 +7,9 @@ import NextLink from 'next/link'
 export const Header: React.FC = () => {
   return (
     <AppBar position="static">
-      <Container maxWidth="lg" sx={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Title variant="h1" fontWeight="bold" fontSize="1.5rem">
+      <Container maxWidth="lg" sx={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}>
+        <Stack alignItems="center" direction="row" justifyContent="space-between">
+          <Title fontSize="1.5rem" fontWeight="bold" variant="h1">
             <NextLink href="/">
               92thunder.dev
             </NextLink>
@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
             <Button color="inherit" href="/about">
               ABOUT
             </Button>
-            <IconButton color="inherit" href="https://github.com/92thunder/92thunder.dev" aria-label="Github Repository">
+            <IconButton aria-label="Github Repository" color="inherit" href="https://github.com/92thunder/92thunder.dev">
               <GitHub/>
             </IconButton>
           </Box>

@@ -19,16 +19,16 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<typeof getStaticProps
     <>
       <Head>
         <title>92thunder.dev</title>
-        <meta name="description" content="Ryota Kunisada@92thunder Blog" />
-        <meta property="og:url" content="https://92thunder.dev" />
-        <meta property="og:type" content="blog" />
-        <meta property="og:title" content="92thunder.dev"></meta>
-        <meta property="og:description" content="Ryota Kunisada@92thunder Blog" />
-        <meta property="og:site_name" content="92thunder.dev" />
-        <meta property="og:image" content="https://92thunder.dev/ogp.png" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="alternate" type="application/atom+xml" title="Atom" href="https://92thunder.dev/feeds/atom.xml" />
-        <link rel="alternate" type="application/rss+xml" title="RSS2.0" href="https://92thunder.dev/feeds/feed.xml" />
+        <meta content="Ryota Kunisada@92thunder Blog" name="description" />
+        <meta content="https://92thunder.dev" property="og:url" />
+        <meta content="blog" property="og:type" />
+        <meta content="92thunder.dev" property="og:title"></meta>
+        <meta content="Ryota Kunisada@92thunder Blog" property="og:description" />
+        <meta content="92thunder.dev" property="og:site_name" />
+        <meta content="https://92thunder.dev/ogp.png" property="og:image" />
+        <link href="/favicon.ico" rel="icon" />
+        <link href="https://92thunder.dev/feeds/atom.xml" rel="alternate" title="Atom" type="application/atom+xml" />
+        <link href="https://92thunder.dev/feeds/feed.xml" rel="alternate" title="RSS2.0" type="application/rss+xml" />
       </Head>
 
       <main className={styles.main}>

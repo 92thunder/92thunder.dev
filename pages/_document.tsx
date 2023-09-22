@@ -5,9 +5,9 @@ const Document: FC = () => {
 	return (
 		<Html lang="ja">
 			<Head>
-				<link rel="manifest" href="/manifest.json" />
-				<link rel="apple-touch-icon" href="/logo192.png" />
-				<meta name="theme-color" content="#424242" />
+				<link href="/manifest.json" rel="manifest" />
+				<link href="/logo192.png" rel="apple-touch-icon" />
+				<meta content="#424242" name="theme-color" />
 			</Head>
 			<body>
 				<Main />
