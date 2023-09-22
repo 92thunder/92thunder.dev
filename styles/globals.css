@@ -31,7 +31,8 @@ code:not([class]) {
 }
 
 hr {
-  color: lightgray;
+  border: none;
+  border-bottom: 0.5px solid #aaa;
 }
 
 blockquote {
