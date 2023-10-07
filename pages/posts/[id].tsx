@@ -10,6 +10,7 @@ import { TableOfContents } from '../../components/TableOfContents'
 import React from 'react'
 import { HeadingComponent } from 'react-markdown/lib/ast-to-react'
 import { getHeadingId } from '../../libs/getHeadings'
+import { ShareButtons } from '../../components/ShareButtons'
 
 export async function getStaticPaths() {
   const results: Post[] = await getPosts()
@@ -74,27 +75,26 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
         />
       </Head>
       <Stack gap={2}>
-
         <Stack
           direction="column"
-          gap={2}
-      >
-          <Typography variant="body1">
+          gap={1}
+        >
+          <Typography align="right" variant="body1">
             {post.publishedAt}
           </Typography>
           <Typography
             component="h1"
             fontWeight="bold"
             variant="h4"
-        >
+          >
             {post.title}
           </Typography>
         </Stack>
         <Stack
           direction="row"
           gap={2}
-      >
-          <Card>
+        >
+          <Card style={{width: "100%"}}>
             <CardContent>
               <ReactMarkdown
                 components={{
@@ -112,6 +112,7 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
           </Card>
           <TableOfContents markdown={post.body} />
         </Stack>
+        <ShareButtons />
       </Stack>
     </>
   )
