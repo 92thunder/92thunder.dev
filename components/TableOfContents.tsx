@@ -29,6 +29,7 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
 }
 
 const StyledCard = styled(Card)`
+  padding: 16px 0;
   min-width: 10rem;
   width: 100%;
   max-width: 25%;

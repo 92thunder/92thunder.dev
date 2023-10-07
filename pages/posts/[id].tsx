@@ -1,5 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { Box, Stack, Typography } from '@mui/material'
+import { Card, CardContent, Stack, Typography } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { CodeBlock } from '../../components/CodeBlock'
@@ -73,40 +73,45 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
           property="og:image"
         />
       </Head>
-      <Stack
-        direction="column"
-        gap={2}
+      <Stack gap={2}>
+
+        <Stack
+          direction="column"
+          gap={2}
       >
-        <Typography variant="body1">
-          {post.publishedAt}
-        </Typography>
-        <Typography
-          component="h1"
-          fontWeight="bold"
-          variant="h4"
+          <Typography variant="body1">
+            {post.publishedAt}
+          </Typography>
+          <Typography
+            component="h1"
+            fontWeight="bold"
+            variant="h4"
         >
-          {post.title}
-        </Typography>
-      </Stack>
-      <Stack
-        direction="row"
-        gap={2}
+            {post.title}
+          </Typography>
+        </Stack>
+        <Stack
+          direction="row"
+          gap={2}
       >
-        <Box>
-          <ReactMarkdown
-            components={{
+          <Card>
+            <CardContent>
+              <ReactMarkdown
+                components={{
               code: CodeBlock,
               h1: HeadingRenderer,
               h2: HeadingRenderer,
               h3: HeadingRenderer,
             }}
-            plugins={[remarkGfm]}
-            skipHtml={false}
+                plugins={[remarkGfm]}
+                skipHtml={false}
           >
-            {post.body}
-          </ReactMarkdown>
-        </Box>
-        <TableOfContents markdown={post.body} />
+                {post.body}
+              </ReactMarkdown>
+            </CardContent>
+          </Card>
+          <TableOfContents markdown={post.body} />
+        </Stack>
       </Stack>
     </>
   )
