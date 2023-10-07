@@ -11,6 +11,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "noUnusedLocals": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,

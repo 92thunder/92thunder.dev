@@ -1,5 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { Box, Grid, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { CodeBlock } from '../../components/CodeBlock'
@@ -41,20 +41,57 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
   return (
     <>
       <Head>
-        <title>{post.title}</title>
-        <meta content={description} name="description" />
-        <meta content={`https://92thunder.dev/posts/${post.id}`} property="og:url" />
-        <meta content="article" property="og:type" />
-        <meta content={post.title} property="og:title"></meta>
-        <meta content={description} property="og:description" />
-        <meta content="92thunder.dev" property="og:site_name" />
-        <meta content="https://92thunder.dev/ogp.png" property="og:image" />
+        <title>
+          {post.title}
+        </title>
+        <meta
+          content={description}
+          name="description"
+        />
+        <meta
+          content={`https://92thunder.dev/posts/${post.id}`}
+          property="og:url"
+        />
+        <meta
+          content="article"
+          property="og:type"
+        />
+        <meta
+          content={post.title}
+          property="og:title"
+        />
+        <meta
+          content={description}
+          property="og:description"
+        />
+        <meta
+          content="92thunder.dev"
+          property="og:site_name"
+        />
+        <meta
+          content="https://92thunder.dev/ogp.png"
+          property="og:image"
+        />
       </Head>
-      <Stack direction="column" gap={2}>
-        <Typography variant="body1">{post.publishedAt}</Typography>
-        <Typography component="h1" fontWeight="bold" variant="h4">{post.title}</Typography>
+      <Stack
+        direction="column"
+        gap={2}
+      >
+        <Typography variant="body1">
+          {post.publishedAt}
+        </Typography>
+        <Typography
+          component="h1"
+          fontWeight="bold"
+          variant="h4"
+        >
+          {post.title}
+        </Typography>
       </Stack>
-      <Stack direction="row" gap={2}>
+      <Stack
+        direction="row"
+        gap={2}
+      >
         <Box>
           <ReactMarkdown
             components={{

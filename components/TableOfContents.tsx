@@ -7,14 +7,17 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
   markdown,
 }) => {
   const headings = getHeadings(markdown)
-  if (!headings.length) return null
+  if (!headings.length) {return null}
   return (
     <StyledCard>
       <nav>
         <List>
           {headings.map((heading) => (
             <ListItem key={heading.id}>
-              <Link fontSize={12} href={`#${heading.id}`}>
+              <Link
+                fontSize={12}
+                href={`#${heading.id}`}
+              >
                 {heading.text}
               </Link>
             </ListItem>
