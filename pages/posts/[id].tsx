@@ -75,10 +75,7 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
         />
       </Head>
       <Stack gap={2}>
-        <Stack
-          direction="column"
-          gap={1}
-        >
+        <Stack direction="column">
           <Typography align="right" variant="body1">
             {post.publishedAt}
           </Typography>
@@ -98,11 +95,11 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
             <CardContent>
               <ReactMarkdown
                 components={{
-              code: CodeBlock,
-              h1: HeadingRenderer,
-              h2: HeadingRenderer,
-              h3: HeadingRenderer,
-            }}
+                  code: CodeBlock,
+                  h1: HeadingRenderer,
+                  h2: HeadingRenderer,
+                  h3: HeadingRenderer,
+                }}
                 plugins={[remarkGfm]}
                 skipHtml={false}
           >
