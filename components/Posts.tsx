@@ -66,7 +66,7 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 }
 
 
-export const Posts: React.FC<{readonly posts: Post[]}> = ({posts}) => {
+export const Posts: React.FC<{readonly posts: Post[]}> = ({ posts }) => {
   return (
     <Grid
       container

@@ -1,11 +1,13 @@
 module.exports = {
   extends: [
+    "eslint:recommended",
     "next/core-web-vitals",
     "@nkzw",
     "plugin:react/recommended",
   ],
   plugins: ["unused-imports"],
   rules: {
+    "object-curly-spacing": ["error", "always"],
     "react/destructuring-assignment": "off",
     "react/function-component-definition": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],

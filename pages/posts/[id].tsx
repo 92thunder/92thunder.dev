@@ -22,7 +22,7 @@ const HeadingRenderer: HeadingComponent = (props) => {
   const children = React.Children.toArray(props.children)
   const text = children
   const slug = getHeadingId(`${text}`)
-  return React.createElement('h' + props.level, {id: slug}, props.children)
+  return React.createElement('h' + props.level, { id: slug }, props.children)
 }
 
 export const  getStaticProps: GetStaticProps = async (context) => {
@@ -94,7 +94,7 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
           direction="row"
           gap={2}
         >
-          <Card style={{width: "100%"}}>
+          <Card style={{ width: "100%" }}>
             <CardContent>
               <ReactMarkdown
                 components={{
