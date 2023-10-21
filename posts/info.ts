@@ -7,6 +7,12 @@ type PostInfo = {
 
 export const postsInfo: PostInfo[] = [
   {
+    id: "block-sites-by-hosts",
+    mdFilename: "2023-10-21.md",
+    publishedAt: "2023-10-21 00:00:00",
+    title: "/etc/hosts に特定のサイトに繋がらないようにする",
+  },
+  {
     id: "vscode-eslint-prettier",
     mdFilename: "2023-10-07/post.md",
     publishedAt: "2023-10-07 00:00:00",
