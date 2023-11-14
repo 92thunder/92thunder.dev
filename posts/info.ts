@@ -7,6 +7,12 @@ type PostInfo = {
 
 export const postsInfo: PostInfo[] = [
   {
+    id: "yuruasa-2023-10-21-output",
+    mdFilename: "2023-11-14.md",
+    publishedAt: "2023-11-14 00:00:00",
+    title: "ゆるあさ で開発生産性の取り組みを発表してきた",
+  },
+  {
     id: "block-sites-by-hosts",
     mdFilename: "2023-10-21.md",
     publishedAt: "2023-10-21 00:00:00",
