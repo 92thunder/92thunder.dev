@@ -7,6 +7,12 @@ type PostInfo = {
 
 export const postsInfo: PostInfo[] = [
   {
+    id: "3rdpartyjs-1",
+    mdFilename: "2023-11-19.md",
+    publishedAt: "2023-11-19 00:00:00",
+    title: "3rdparty.jsを主催&登壇してきた",
+  },
+  {
     id: "yuruasa-2023-10-21-output",
     mdFilename: "2023-11-14.md",
     publishedAt: "2023-11-14 00:00:00",
