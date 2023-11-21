@@ -18,7 +18,7 @@ export const CodeBlock: CodeComponent = ({ children, className, inline }) => {
         language={language}
         style={vscDarkPlus}
       >
-        {children}
+        {String(children)}
       </SyntaxHighlighter>
     )
   }
