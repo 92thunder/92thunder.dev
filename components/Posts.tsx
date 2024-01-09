@@ -1,8 +1,9 @@
-import { Card, CardContent, Typography, Grid } from '@mui/material'
+import { Card, CardContent, Typography, Grid, Icon } from '@mui/material'
 import React from 'react'
 import styled from '@emotion/styled'
 import { Post } from '../types'
 import Link from 'next/link'
+import { Launch } from '@mui/icons-material'
 
 const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
   const bodyPreview = post.body.includes('---')
@@ -11,7 +12,7 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 
   return (
     <StyledLink
-      href={`/posts/${post.id}`}
+      href={post.type === 'blog' ? `/posts/${post.id}`: post.body}
       passHref
     >
       <Card sx={{
@@ -35,16 +36,17 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
               container
               justifyContent="space-between"
             >
-              <Grid item>
+              <Grid alignItems="end" container item>
                 <Typography
                   component="p"
                   fontWeight="bold"
                   variant="h5"
-                >  
+                  >  
                   {post.title}
                 </Typography>
+                {post.type === 'external' ? <Icon><Launch/></Icon> : null}
               </Grid>
-              <Grid item>
+              <Grid item mt="2px">
                 <Typography
                   component="p"
                   variant="body1"

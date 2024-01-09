@@ -3,4 +3,5 @@ export type Post = {
   id: string,
   publishedAt: string,
   title: string
+  type: 'blog' | 'external'
 }

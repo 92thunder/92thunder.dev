@@ -9,14 +9,26 @@ const toDisplayDate = (dateString: string) => {
 export async function getPosts(): Promise<Post[]> {
   const posts: Post[] = []
   for (const postInfo of postsInfo) {
+    if (postInfo.type === 'blog') {
+
     const filePath = new URL(`../posts/${postInfo.mdFilename}`, import.meta.url)
     const body = await readFile(filePath, { encoding: 'utf8' })
-    posts.push({
-      body,
-      id: postInfo.id,
-      publishedAt: toDisplayDate(postInfo.publishedAt),
-      title: postInfo.title,
-    })
+      posts.push({
+        body,
+        id: postInfo.id,
+        publishedAt: toDisplayDate(postInfo.publishedAt),
+        title: postInfo.title,
+        type: 'blog',
+      })
+    } else {
+      posts.push({
+        body: postInfo.link,
+        id: postInfo.id,
+        publishedAt: toDisplayDate(postInfo.publishedAt),
+        title: postInfo.title,
+        type: 'external',
+      })
+    }
   }
   return posts
 }
@@ -28,12 +40,23 @@ export async function getPost(
   if (!postInfo) {
     throw new Error(`Not found ${id}`)
   }
-  const filePath = new URL(`../posts/${postInfo.mdFilename}`, import.meta.url)
-  const body = await readFile(filePath, { encoding: 'utf8' })
-  return {
-    body,
-    id: postInfo.id,
-    publishedAt: toDisplayDate(postInfo.publishedAt),
-    title: postInfo.title,
+  if (postInfo.type === 'blog') {
+    const filePath = new URL(`../posts/${postInfo.mdFilename}`, import.meta.url)
+    const body = await readFile(filePath, { encoding: 'utf8' })
+    return {
+      body,
+      id: postInfo.id,
+      publishedAt: toDisplayDate(postInfo.publishedAt),
+      title: postInfo.title,
+        type: 'blog',
+    }
+  } else {
+    return {
+      body: postInfo.link,
+      id: postInfo.id,
+      publishedAt: toDisplayDate(postInfo.publishedAt),
+      title: postInfo.title,
+        type: 'external',
+    }
   }
 }
