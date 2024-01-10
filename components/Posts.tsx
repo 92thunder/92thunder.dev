@@ -36,7 +36,7 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
               container
               justifyContent="space-between"
             >
-              <Grid alignItems="end" container item>
+              <Grid alignItems="center" container item>
                 <Typography
                   component="p"
                   fontWeight="bold"
