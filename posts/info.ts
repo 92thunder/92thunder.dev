@@ -17,13 +17,13 @@ type ExternalPostInfo = {
 type PostInfo = BlogPostInfo | ExternalPostInfo
 
 export const postsInfo: PostInfo[] = [
-  // {
-  //   id: "remotework-2024-01",
-  //   link: "https://note.com/92thunder/n/n533a6badb8f5",
-  //   publishedAt: "2024-01-19 00:00:00",
-  //   title: "北海道旭川市に移住しました",
-  //   type: 'external',
-  // },
+  {
+    id: "remotework-2024-01",
+    link: "https://note.com/92thunder/n/n533a6badb8f5",
+    publishedAt: "2024-01-19 00:00:00",
+    title: "北海道旭川市に移住しました",
+    type: 'external',
+  },
   {
     id: "3rdpartyjs-1",
     mdFilename: "2023-11-19.md",
