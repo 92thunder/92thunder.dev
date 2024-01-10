@@ -1,18 +1,22 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Header } from '../components/Header'
-import { Container, createTheme, ThemeProvider } from '@mui/material'
-import { grey } from '@mui/material/colors'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { GA_ID, pageview } from '../libs/gtag'
+import { Box, ChakraProvider, extendTheme } from '@chakra-ui/react'
 
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: grey[800]
-    }
+const chakraTheme = extendTheme({
+  config: {
+    initialColorMode: "dark",
+    useSystemColorMode: false,
+  },
+  styles: {
+    global: {
+      body: {
+        color: 'white'
+      },
+    },
   }
 })
 
@@ -30,15 +34,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   }, [router.events])
   return (
-    <ThemeProvider theme={theme}>
+    <ChakraProvider theme={chakraTheme}>
       <Header />
-      <Container
-        maxWidth="lg"
-        sx={{ paddingBottom: "2rem", paddingTop: "2rem" }}
-      >
+      <Box p="24px" pt="2rem">
         <Component {...pageProps} />
-      </Container>
-    </ThemeProvider>
+      </Box>
+    </ChakraProvider>
   )
 }
 

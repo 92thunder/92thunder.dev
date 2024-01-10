@@ -1,55 +1,29 @@
 import React from 'react'
-import { AppBar, Typography, IconButton, Button, Container, Stack, Box } from '@mui/material'
-import { GitHub } from '@mui/icons-material'
-import styled from '@emotion/styled'
-import NextLink from 'next/link'
+import { Box, Heading, Stack } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/next-js'
 
 export const Header: React.FC = () => {
   return (
-    <AppBar position="static">
-      <Container
-        maxWidth="lg"
-        sx={{ paddingBottom: "0.5rem", paddingTop: "0.5rem" }}
-      >
-        <Stack
-          alignItems="center"
-          direction="row"
-          justifyContent="space-between"
+    <Box p="24px">
+      <Stack
+        alignItems="center"
+        direction="row"
+        justifyContent="space-between"
         >
-          <Title
-            fontSize="1.5rem"
-            fontWeight="bold"
-            variant="h1"
-          >
-            <NextLink href="/">
-              92thunder.dev
-            </NextLink>
-          </Title>
-          <Box>
-            <Button
-              color="inherit"
-              href="/about"
-            >
-              ABOUT
-            </Button>
-            <IconButton
-              aria-label="Github Repository"
-              color="inherit"
-              href="https://github.com/92thunder/92thunder.dev"
-            >
-              <GitHub />
-            </IconButton>
-          </Box>
-        </Stack>
-      </Container>
-    </AppBar>
+        <Heading
+          as='h1'
+          size="lg"
+        >
+          <Link href="/" sx={{ textDecoration: 'none' }} textDecoration="none">
+            92thunder.dev
+          </Link>
+        </Heading>
+        <Box>
+          <Link color="inherit" fontWeight="500" href="/about" >
+            About
+          </Link>
+        </Box>
+      </Stack>
+    </Box>
   )
 }
-
-const Title = styled(Typography)`
-  a {
-    text-decoration: none;
-    color: inherit;
-    vertical-align: middle
-  }
-`

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Card, Link, List, ListItem } from '@mui/material'
+import { Card, Link, List, ListItem } from '@chakra-ui/react'
 import { FC } from 'react'
 import { getHeadings } from '../libs/getHeadings'
 
@@ -9,7 +9,12 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
   const headings = getHeadings(markdown)
   if (!headings.length) {return null}
   return (
-    <StyledCard>
+    <StyledCard
+      backgroundColor="#6B7280"
+      borderColor="white"
+      borderWidth="1px"
+      color="white"
+    >
       <nav>
         <List>
           {headings.map((heading) => (

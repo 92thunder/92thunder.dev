@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Grid, Icon } from '@mui/material'
+import { Card, Icon, CardBody, Text, VStack, HStack, Box, Heading } from '@chakra-ui/react'
 import React from 'react'
 import styled from '@emotion/styled'
 import { Post } from '../types'
@@ -15,53 +15,49 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
       href={post.type === 'blog' ? `/posts/${post.id}`: post.body}
       passHref
     >
-      <Card sx={{
-        ':hover': {
-          boxShadow: 4,
-        }
-      }}
+      <Card backgroundColor="#6c778c"
+        borderColor="white"
+        borderWidth="1px"
       >
-        <CardContent sx={{
-          '&:last-child': {
-            paddingBottom: 2,
-          }
-        }}
-        >
-          <Grid
-            container
+        <CardBody>
+          <VStack
+            alignItems="start"
             direction="column"
-            gap={2}
+            spacing={10}
           >
-            <Grid
-              container
+            <VStack
+              alignItems="start"
+              gap={1}
               justifyContent="space-between"
             >
-              <Grid alignItems="center" container item>
-                <Typography
-                  component="p"
-                  fontWeight="bold"
-                  variant="h5"
+              <HStack alignItems="center">
+                <Heading
+                  as="p"
+                  color="white"
+                  fontSize="24px"
+                  size="md"
                   >  
                   {post.title}
-                </Typography>
-                {post.type === 'external' ? <Icon><Launch/></Icon> : null}
-              </Grid>
-              <Grid item mt="2px">
-                <Typography
-                  component="p"
-                  variant="body1"
+                </Heading>
+                {post.type === 'external' ? <Icon color="white" fontSize="20px"><Launch/></Icon> : null}
+              </HStack>
+              <HStack mt="2px">
+                <Text
+                  as="p"
+                  color="gray.200"
+                  fontSize="14px"
                 >
                   {post.publishedAt}
-                </Typography>
-              </Grid>
-            </Grid>
-            {bodyPreview ? <Grid item>
-              <Typography>
+                </Text>
+              </HStack>
+            </VStack>
+            {bodyPreview ? <HStack>
+              <Text color="gray.50">
                 {bodyPreview}
-              </Typography>
-            </Grid> : null}
-          </Grid>
-        </CardContent>
+              </Text>
+            </HStack> : null}
+          </VStack>
+        </CardBody>
       </Card> 
     </StyledLink>
   )
@@ -70,21 +66,21 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 
 export const Posts: React.FC<{readonly posts: Post[]}> = ({ posts }) => {
   return (
-    <Grid
-      container
+    <VStack
+      alignItems="start"
       direction="column"
       spacing={6}
+      w="100%"
     >
       {posts.map((post) => (
-        <Grid
-          item
+        <Box
           key={post.id}
-          maxWidth="100% !important"
+          w="100%"
         >
           <PostCard post={post} />
-        </Grid>
+        </Box>
       ))}
-    </Grid>
+    </VStack>
   )
 }
 

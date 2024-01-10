@@ -1,5 +1,5 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { Card, CardContent, Stack, Typography } from '@mui/material'
+import { Box, HStack, Heading, Stack, Text, VStack } from '@chakra-ui/react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { CodeBlock } from '../../components/CodeBlock'
@@ -75,40 +75,37 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
         />
       </Head>
       <Stack gap={2}>
-        <Stack direction="column">
-          <Typography align="right" variant="body1">
-            {post.publishedAt}
-          </Typography>
-          <Typography
-            component="h1"
+        <VStack alignItems="start">
+          <Heading
+            as="h1"
             fontWeight="bold"
-            variant="h4"
+            size="lg"
           >
             {post.title}
-          </Typography>
-        </Stack>
-        <Stack
-          direction="row"
+          </Heading>
+          <Text color="gray.300">
+            {post.publishedAt}
+          </Text>
+        </VStack>
+        <HStack
           gap={2}
         >
-          <Card style={{ width: "100%" }}>
-            <CardContent>
-              <ReactMarkdown
-                components={{
+          <Box>
+            <ReactMarkdown
+              components={{
                   code: CodeBlock,
                   h1: HeadingRenderer,
                   h2: HeadingRenderer,
                   h3: HeadingRenderer,
                 }}
-                plugins={[remarkGfm]}
-                skipHtml={false}
-          >
-                {post.body}
-              </ReactMarkdown>
-            </CardContent>
-          </Card>
+              plugins={[remarkGfm]}
+              skipHtml={false}
+            >
+              {post.body}
+            </ReactMarkdown>
+          </Box>
           <TableOfContents markdown={post.body} />
-        </Stack>
+        </HStack>
         <ShareButtons />
       </Stack>
     </>
