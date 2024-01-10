@@ -3,7 +3,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { Post } from '../types'
 import Link from 'next/link'
-import { Launch } from '@mui/icons-material'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
   const bodyPreview = post.body.includes('---')
@@ -39,7 +39,7 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
                   >  
                   {post.title}
                 </Heading>
-                {post.type === 'external' ? <Icon color="white" fontSize="20px"><Launch/></Icon> : null}
+                {post.type === 'external' ? <Icon color="white" fontSize="20px"><ExternalLinkIcon/></Icon> : null}
               </HStack>
               <HStack mt="2px">
                 <Text

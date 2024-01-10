@@ -12,6 +12,7 @@ export const Header: React.FC = () => {
         >
         <Heading
           as='h1'
+          fontSize="24px"
           size="lg"
         >
           <Link href="/" sx={{ textDecoration: 'none' }} textDecoration="none">

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Card, Link, List, ListItem } from '@chakra-ui/react'
+import { Card, CardBody, Link, List, ListItem } from '@chakra-ui/react'
 import { FC } from 'react'
 import { getHeadings } from '../libs/getHeadings'
 
@@ -15,33 +15,36 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
       borderWidth="1px"
       color="white"
     >
-      <nav>
-        <List>
-          {headings.map((heading) => (
-            <ListItem key={heading.id}>
-              <Link
-                fontSize={12}
-                href={`#${heading.id}`}
-              >
-                {heading.text}
-              </Link>
-            </ListItem>
+      <CardBody py="0">
+        <nav>
+          <List>
+            {headings.map((heading) => (
+              <ListItem key={heading.id} my="2">
+                <Link
+                  fontSize={12}
+                  href={`#${heading.id}`}
+                  textDecoration="underline"
+                >
+                  {heading.text}
+                </Link>
+              </ListItem>
           ))}
-        </List>
-      </nav>
+          </List>
+        </nav>
+      </CardBody>
     </StyledCard>
   )
 }
 
 const StyledCard = styled(Card)`
   padding: 16px 0;
-  min-width: 10rem;
+  min-width: 200px;
   width: 100%;
   max-width: 25%;
   position: sticky;
   top: 2rem;
   height: min-content;
-  max-height: calc(100vh - 4rem);
+  max-height: calc(100vh - 24px);
   overflow-y: auto;
 
   @media (max-width: 640px) {

@@ -4,7 +4,7 @@ import { Header } from '../components/Header'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { GA_ID, pageview } from '../libs/gtag'
-import { Box, ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { Box, ChakraProvider, Container, extendTheme } from '@chakra-ui/react'
 
 const chakraTheme = extendTheme({
   config: {
@@ -14,6 +14,7 @@ const chakraTheme = extendTheme({
   styles: {
     global: {
       body: {
+        background: '#3e475b',
         color: 'white'
       },
     },
@@ -35,10 +36,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events])
   return (
     <ChakraProvider theme={chakraTheme}>
-      <Header />
-      <Box p="24px" pt="2rem">
-        <Component {...pageProps} />
-      </Box>
+      <Container maxW="container.xl">
+        <Header />
+        <Box p="24px" pt="2rem">
+          <Component {...pageProps} />
+        </Box>
+      </Container>
     </ChakraProvider>
   )
 }

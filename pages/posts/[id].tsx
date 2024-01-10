@@ -1,28 +1,20 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { Box, HStack, Heading, Stack, Text, VStack } from '@chakra-ui/react'
+import { Box, Divider, HStack, Heading, Link, Text, VStack } from '@chakra-ui/react'
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import { CodeBlock } from '../../components/CodeBlock'
 import { getPost, getPosts } from '../../libs/postRepository'
 import Head from 'next/head'
 import { Post } from '../../types'
 import { TableOfContents } from '../../components/TableOfContents'
 import React from 'react'
-import { HeadingComponent } from 'react-markdown/lib/ast-to-react'
-import { getHeadingId } from '../../libs/getHeadings'
 import { ShareButtons } from '../../components/ShareButtons'
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer'
+import remarkGfm from 'remark-gfm'
+import { CodeBlock } from '../../components/CodeBlock'
 
 export async function getStaticPaths() {
   const results: Post[] = await getPosts()
   const paths = results.map((post) => `/posts/${post.id}`)
   return { fallback: false, paths }
-}
-
-const HeadingRenderer: HeadingComponent = (props) => {
-  const children = React.Children.toArray(props.children)
-  const text = children
-  const slug = getHeadingId(`${text}`)
-  return React.createElement('h' + props.level, { id: slug }, props.children)
 }
 
 export const  getStaticProps: GetStaticProps = async (context) => {
@@ -35,6 +27,33 @@ export const  getStaticProps: GetStaticProps = async (context) => {
   return {
     props: { post }
   }
+}
+
+const theme: Parameters<typeof ChakraUIRenderer>[0] = {
+  a: (props) => {
+    return (
+      <Link {...props} color="#60A5FA" textDecoration="underline" />
+    )
+  },
+  code: CodeBlock,
+  h2: ({ children }) => {
+    return (
+      <Heading as="h2" my="32px" size="lg">{children}</Heading>
+    )
+  },
+  h3: ({ children }) => {
+    return (
+      <Heading as="h3" my="24px" size="md">{children}</Heading>
+    )
+  },
+  hr: () => {
+    return <Divider my="16px" />
+  },
+  p: ({ children }) => {
+    return (
+      <Text lineHeight={1.5} my="16px">{children}</Text>
+    )
+  },
 }
 
 const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -74,7 +93,7 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
           property="og:image"
         />
       </Head>
-      <Stack gap={2}>
+      <VStack alignItems="start" gap={10}>
         <VStack alignItems="start">
           <Heading
             as="h1"
@@ -88,16 +107,12 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
           </Text>
         </VStack>
         <HStack
+          alignItems="start"
           gap={2}
         >
           <Box>
             <ReactMarkdown
-              components={{
-                  code: CodeBlock,
-                  h1: HeadingRenderer,
-                  h2: HeadingRenderer,
-                  h3: HeadingRenderer,
-                }}
+              components={ChakraUIRenderer(theme)}
               plugins={[remarkGfm]}
               skipHtml={false}
             >
@@ -107,7 +122,7 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
           <TableOfContents markdown={post.body} />
         </HStack>
         <ShareButtons />
-      </Stack>
+      </VStack>
     </>
   )
 }
