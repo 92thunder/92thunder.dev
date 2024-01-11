@@ -14,7 +14,7 @@ const chakraTheme = extendTheme({
   styles: {
     global: {
       body: {
-        background: '#3e475b',
+        background: 'black',
         color: 'white'
       },
     },
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events])
   return (
     <ChakraProvider theme={chakraTheme}>
-      <Container maxW="container.xl">
+      <Container maxW="container.lg" minW="container.md">
         <Header />
         <Box p="24px" pt="2rem">
           <Component {...pageProps} />

@@ -15,7 +15,7 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
       href={post.type === 'blog' ? `/posts/${post.id}`: post.body}
       passHref
     >
-      <Card backgroundColor="#6c778c"
+      <Card backgroundColor="#0A0A0B"
         borderColor="white"
         borderWidth="1px"
       >
