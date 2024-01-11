@@ -93,36 +93,38 @@ const Post: NextPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>
           property="og:image"
         />
       </Head>
-      <VStack alignItems="start" gap={10}>
-        <VStack alignItems="start">
-          <Heading
-            as="h1"
-            fontWeight="bold"
-            size="lg"
+      <Box p="24px" pt="2rem">
+        <VStack alignItems="start" gap={10}>
+          <VStack alignItems="start">
+            <Heading
+              as="h1"
+              fontWeight="bold"
+              size="lg"
           >
-            {post.title}
-          </Heading>
-          <Text color="gray.300">
-            {post.publishedAt}
-          </Text>
-        </VStack>
-        <HStack
-          alignItems="start"
-          gap={2}
+              {post.title}
+            </Heading>
+            <Text color="gray.300">
+              {post.publishedAt}
+            </Text>
+          </VStack>
+          <HStack
+            alignItems="start"
+            gap={2}
         >
-          <Box>
-            <ReactMarkdown
-              components={ChakraUIRenderer(theme)}
-              plugins={[remarkGfm]}
-              skipHtml={false}
+            <Box>
+              <ReactMarkdown
+                components={ChakraUIRenderer(theme)}
+                plugins={[remarkGfm]}
+                skipHtml={false}
             >
-              {post.body}
-            </ReactMarkdown>
-          </Box>
-          <TableOfContents markdown={post.body} />
-        </HStack>
-        <ShareButtons />
-      </VStack>
+                {post.body}
+              </ReactMarkdown>
+            </Box>
+            <TableOfContents markdown={post.body} />
+          </HStack>
+          <ShareButtons />
+        </VStack>
+      </Box>
     </>
   )
 }

@@ -10,7 +10,7 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
   if (!headings.length) {return null}
   return (
     <StyledCard
-      backgroundColor="#6B7280"
+      backgroundColor="#0A0A0B"
       borderColor="white"
       borderWidth="1px"
       color="white"

@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
           </Link>
         </Heading>
         <Box>
-          <Link color="inherit" fontWeight="500" href="/about" >
+          <Link color="#22C55C" fontWeight="600" href="/about" >
             About
           </Link>
         </Box>
