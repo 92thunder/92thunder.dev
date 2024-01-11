@@ -87,7 +87,7 @@ const HeroArea: React.FC = () => {
       <section>
         <Box h="calc(100vh - 30vh - 76.8px)" pb="24px">
           <VStack h="100%" justifyContent="center" spacing="16px">
-            <Heading as="h2" fontSize={48}>Hello, I'm 92thunder</Heading>
+            <Heading as="h2" fontSize={48}>Hello, I&#39;m 92thunder</Heading>
             <Text color="#22C55E" fontSize={24} fontWeight="600">A Web Developer Specializing in Front End Development</Text>
           </VStack>
         </Box>
@@ -97,7 +97,7 @@ const HeroArea: React.FC = () => {
           <VStack alignItems="start" h="100%" justifyContent="center" spacing="16px">
             <Heading as="h2" color="black" fontSize={40} m={0}>About Me</Heading>
             <Text color="black" fontSize={18} fontWeight="400">
-              I'm a web developer. I specialize in front end development, with expertise in React and TypeScript.
+              I&#39;m a web developer. I specialize in front end development, with expertise in React and TypeScript.
             </Text>
           </VStack>
         </Box>

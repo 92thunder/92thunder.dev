@@ -34,7 +34,7 @@ const Document: FC = () => {
                 }}
               />
       </>
-          )}
+      )}
     </Head>
     <body>
       <Main />

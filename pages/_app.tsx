@@ -4,7 +4,7 @@ import { Header } from '../components/Header'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { GA_ID, pageview } from '../libs/gtag'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { ChakraProvider, Container, extendTheme } from '@chakra-ui/react'
 
 const chakraTheme = extendTheme({
   config: {
@@ -36,8 +36,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events])
   return (
     <ChakraProvider theme={chakraTheme}>
-      <Header />
-      <Component {...pageProps} />
+      <Container maxW="100%" minW="container.md" p="0">
+        <Header />
+        <Component {...pageProps} />
+      </Container>
     </ChakraProvider>
   )
 }
