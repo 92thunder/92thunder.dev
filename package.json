@@ -6,7 +6,7 @@
     "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint --fix --ext .ts,.tsx .",
+    "format": "npx @biomejs/biome format --write ./pages ./components ./libs ./posts",
     "test": "jest"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.5.1",
     "@nkzw/eslint-config": "^1.6.0",
     "@types/gtag.js": "^0.0.18",
     "@types/jest": "^29.5.0",
