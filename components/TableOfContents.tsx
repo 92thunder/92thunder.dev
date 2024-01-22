@@ -11,19 +11,14 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
 		return null
 	}
 	return (
-		<StyledCard
-			backgroundColor="#0A0A0B"
-			borderColor="white"
-			borderWidth="1px"
-			color="white"
-		>
-			<CardBody py="0">
+		<StyledCard background="brand.background" color="brand.accent">
+			<CardBody py="0" p="0">
 				<nav>
 					<List>
 						{headings.map((heading) => (
 							<ListItem key={heading.id} my="2">
 								<Link
-									fontSize={12}
+									fontSize={14}
 									href={`#${heading.id}`}
 									textDecoration="underline"
 								>
@@ -39,7 +34,6 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
 }
 
 const StyledCard = styled(Card)`
-  padding: 16px 0;
   min-width: 200px;
   width: 100%;
   max-width: 25%;

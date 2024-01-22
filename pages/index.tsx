@@ -1,11 +1,10 @@
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next"
 import Head from "next/head"
-import { Posts } from "../components/Posts"
 import { getPosts } from "../libs/postRepository"
-import styles from "../styles/Home.module.css"
 import { Post } from "../types"
 import { generateFeed } from "../libs/generateFeed"
 import { Box, Heading, Text, VStack } from "@chakra-ui/react"
+import { Career } from "../components/Career"
 
 export const getStaticProps: GetStaticProps = async () => {
 	const results: Post[] = await getPosts()
@@ -48,16 +47,9 @@ const Home: NextPage = ({
 			</Head>
 
 			<HeroArea />
-			<Box p="24px" pt="2rem">
-				<main className={styles.main}>
-					<VStack alignItems="start" spacing="16px">
-						<Heading as="h2" fontSize={40}>
-							Posts
-						</Heading>
-						<Posts posts={posts} />
-					</VStack>
-				</main>
-			</Box>
+			<section>
+				<Career />
+			</section>
 		</>
 	)
 }
@@ -71,19 +63,14 @@ const HeroArea: React.FC = () => {
 						<Heading as="h2" fontSize={48}>
 							Hello, I&#39;m 92thunder
 						</Heading>
-						<Text color="#22C55E" fontSize={24} fontWeight="600">
+						<Text color="brand.accent" fontSize={24} fontWeight="600">
 							A Web Developer Specializing in Front End Development
 						</Text>
 					</VStack>
 				</Box>
 			</section>
 			<section>
-				<Box
-					background="linear-gradient(90deg, #22C55E, #1C7F40)"
-					h="30vh"
-					px="24px"
-					py="48px"
-				>
+				<Box background="brand.secondary" h="30vh" px="24px" py="48px">
 					<VStack
 						alignItems="start"
 						h="100%"

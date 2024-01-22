@@ -21,7 +21,7 @@ import { CodeBlock } from "../../components/CodeBlock"
 
 export async function getStaticPaths() {
 	const results: Post[] = await getPosts()
-	const paths = results.map((post) => `/posts/${post.id}`)
+	const paths = results.map((post) => `/blog/${post.id}`)
 	return { fallback: false, paths }
 }
 
@@ -78,7 +78,7 @@ const PostPage: NextPage = ({
 				<title>{post.title}</title>
 				<meta content={description} name="description" />
 				<meta
-					content={`https://92thunder.dev/posts/${post.id}`}
+					content={`https://92thunder.dev/blog/${post.id}`}
 					property="og:url"
 				/>
 				<meta content="article" property="og:type" />

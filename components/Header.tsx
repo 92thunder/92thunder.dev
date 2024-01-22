@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Heading, Stack } from "@chakra-ui/react"
+import { Box, HStack, Heading, Stack } from "@chakra-ui/react"
 import { Link } from "@chakra-ui/next-js"
 
 export const Header: React.FC = () => {
@@ -11,11 +11,18 @@ export const Header: React.FC = () => {
 						92thunder.dev
 					</Link>
 				</Heading>
-				<Box>
-					<Link color="#22C55C" fontWeight="600" href="/about">
-						About
-					</Link>
-				</Box>
+				<HStack spacing={4}>
+					<Box>
+						<Link color="brand.accent" fontWeight="600" href="/blog">
+							Blog
+						</Link>
+					</Box>
+					<Box>
+						<Link color="brand.accent" fontWeight="600" href="/about">
+							About
+						</Link>
+					</Box>
+				</HStack>
 			</Stack>
 		</Box>
 	)

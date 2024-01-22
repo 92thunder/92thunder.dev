@@ -21,19 +21,19 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 
 	return (
 		<StyledLink
-			href={post.type === "blog" ? `/posts/${post.id}` : post.body}
+			href={post.type === "blog" ? `/blog/${post.id}` : post.body}
 			passHref
 		>
-			<Card backgroundColor="#0A0A0B" borderColor="white" borderWidth="1px">
-				<CardBody>
+			<Card backgroundColor="brand.background">
+				<CardBody p="0">
 					<VStack alignItems="start" direction="column" spacing={10}>
 						<VStack alignItems="start" gap={1} justifyContent="space-between">
 							<HStack alignItems="center">
-								<Heading as="p" color="white" fontSize="24px" size="md">
+								<Heading as="p" color="brand.accent" fontSize="24px" size="md">
 									{post.title}
 								</Heading>
 								{post.type === "external" ? (
-									<Icon color="white" fontSize="20px">
+									<Icon color="brand.accent" fontSize="20px">
 										<ExternalLinkIcon />
 									</Icon>
 								) : null}
@@ -46,7 +46,7 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 						</VStack>
 						{bodyPreview ? (
 							<HStack>
-								<Text color="gray.50">{bodyPreview}</Text>
+								<Text color="gray.100">{bodyPreview}</Text>
 							</HStack>
 						) : null}
 					</VStack>
@@ -58,7 +58,13 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 
 export const Posts: React.FC<{ readonly posts: Post[] }> = ({ posts }) => {
 	return (
-		<VStack alignItems="start" direction="column" spacing={6} w="100%">
+		<VStack
+			alignItems="start"
+			direction="column"
+			spacing={20}
+			w="100%"
+			mt="24px"
+		>
 			{posts.map((post) => (
 				<Box key={post.id} w="100%">
 					<PostCard post={post} />

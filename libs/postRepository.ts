@@ -52,13 +52,12 @@ export async function getPost(
 			title: postInfo.title,
 			type: "blog",
 		}
-	} else {
-		return {
-			body: postInfo.link,
-			id: postInfo.id,
-			publishedAt: toDisplayDate(postInfo.publishedAt),
-			title: postInfo.title,
-			type: "external",
-		}
+	}
+	return {
+		body: postInfo.link,
+		id: postInfo.id,
+		publishedAt: toDisplayDate(postInfo.publishedAt),
+		title: postInfo.title,
+		type: "external",
 	}
 }

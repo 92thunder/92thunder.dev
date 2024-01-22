@@ -15,9 +15,18 @@ const chakraTheme = extendTheme({
 	styles: {
 		global: {
 			body: {
-				background: "black",
+				background: "#040D12",
 				color: "white",
 			},
+		},
+	},
+	colors: {
+		brand: {
+			background: "#040D12",
+			color: "white",
+			secondary: "#5C8374",
+			accent: "#93B1A6",
+			sub: "#183D3D",
 		},
 	},
 })

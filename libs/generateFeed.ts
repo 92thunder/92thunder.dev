@@ -21,7 +21,7 @@ export const generateFeed = (posts: Post[]) => {
 			json: `${baseUrl}/feeds/feed.json`,
 			rss2: `${baseUrl}/feeds/feed.xml`,
 		},
-		id: baseUrl + "/",
+		id: `${baseUrl}/`,
 		image: `${baseUrl}/ogp.png`,
 		language: "ja",
 		link: baseUrl,
@@ -29,9 +29,11 @@ export const generateFeed = (posts: Post[]) => {
 		updated: date,
 	})
 
-	posts.forEach((post) => {
+	// biome-ignore lint/complexity/noForEach: <explanation>
+posts.forEach((post) => {
+		if (post.type === 'external') return
 		const description: string = post.body.split("\n")[0] || post.title
-		const url = `${baseUrl}/posts/${post.id}`
+		const url = `${baseUrl}/blog/${post.id}`
 		feed.addItem({
 			date: new Date(post.publishedAt),
 			description,
