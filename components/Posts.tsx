@@ -24,7 +24,11 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 			href={post.type === "blog" ? `/blog/${post.id}` : post.body}
 			passHref
 		>
-			<Card backgroundColor="brand.background">
+			<Card
+				backgroundColor="brand.background"
+				_hover={{ bg: "gray.800" }}
+				py={5}
+			>
 				<CardBody p="0">
 					<VStack alignItems="start" direction="column" spacing={10}>
 						<VStack alignItems="start" gap={1} justifyContent="space-between">
@@ -61,7 +65,7 @@ export const Posts: React.FC<{ readonly posts: Post[] }> = ({ posts }) => {
 		<VStack
 			alignItems="start"
 			direction="column"
-			spacing={20}
+			spacing={10}
 			w="100%"
 			mt="24px"
 		>

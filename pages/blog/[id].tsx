@@ -44,14 +44,14 @@ const theme: Parameters<typeof ChakraUIRenderer>[0] = {
 	code: CodeBlock,
 	h2: ({ children }) => {
 		return (
-			<Heading as="h2" my="32px" size="lg">
+			<Heading as="h2" my="32px" size="lg" id={children.toString()}>
 				{children}
 			</Heading>
 		)
 	},
 	h3: ({ children }) => {
 		return (
-			<Heading as="h3" my="24px" size="md">
+			<Heading as="h3" my="24px" size="md" id={children.toString()}>
 				{children}
 			</Heading>
 		)
