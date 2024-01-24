@@ -7,6 +7,9 @@
       "ja-space-between-half-and-full-width": {
           "space": "always"
       }
+    },
+    "first-line-h1": {
+      "level": 2
     }
   }
 }
