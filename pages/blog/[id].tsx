@@ -93,9 +93,10 @@ const PostPage: NextPage = ({
 						<Heading as="h1" fontWeight="bold" size="lg">
 							{post.title}
 						</Heading>
-						<Text color="gray.300">{post.publishedAt}</Text>
+						<Text color="gray.400">{post.publishedAt}</Text>
 					</VStack>
 					<HStack alignItems="start" gap={2}>
+						<TableOfContents markdown={post.body} />
 						<Box>
 							<ReactMarkdown
 								components={ChakraUIRenderer(theme)}
@@ -105,7 +106,6 @@ const PostPage: NextPage = ({
 								{post.body}
 							</ReactMarkdown>
 						</Box>
-						<TableOfContents markdown={post.body} />
 					</HStack>
 					<ShareButtons />
 				</VStack>
