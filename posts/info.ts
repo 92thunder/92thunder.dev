@@ -18,6 +18,13 @@ type PostInfo = BlogPostInfo | ExternalPostInfo
 
 export const postsInfo: PostInfo[] = [
 	{
+		id: "playwright-world",
+		mdFilename: "2024-01-24.md",
+		publishedAt: "2024-01-24 00:00:00",
+		title: "PlaywrightのテストはNode.jsで実行され、コンポーネントはブラウザで実行される",
+		type: "blog",
+	},
+	{
 		id: "remotework-2024-01",
 		link: "https://note.com/92thunder/n/n533a6badb8f5",
 		publishedAt: "2024-01-19 00:00:00",
