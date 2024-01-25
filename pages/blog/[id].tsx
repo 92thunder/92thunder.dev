@@ -90,6 +90,7 @@ const PostPage: NextPage = ({
 			<Box p="24px" pt="2rem">
 				<VStack alignItems="start" gap={10}>
 					<VStack alignItems="start">
+						G{" "}
 						<Heading as="h1" fontWeight="bold" size="lg">
 							{post.title}
 						</Heading>
@@ -105,9 +106,11 @@ const PostPage: NextPage = ({
 							>
 								{post.body}
 							</ReactMarkdown>
+							<Box mt={20}>
+								<ShareButtons />
+							</Box>
 						</Box>
 					</HStack>
-					<ShareButtons />
 				</VStack>
 			</Box>
 		</>
