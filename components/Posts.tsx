@@ -33,7 +33,13 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 					<VStack alignItems="start" direction="column" spacing={10}>
 						<VStack alignItems="start" gap={1} justifyContent="space-between">
 							<HStack alignItems="center">
-								<Heading as="p" color="brand.accent" fontSize="24px" size="md">
+								<Heading
+									as="p"
+									color="brand.accent"
+									fontSize="24px"
+									size="md"
+									sx={{ wordBreak: "auto-phrase" }}
+								>
 									{post.title}
 								</Heading>
 								{post.type === "external" ? (

@@ -91,7 +91,12 @@ const PostPage: NextPage = ({
 				<VStack alignItems="start" gap={10}>
 					<VStack alignItems="start">
 						G{" "}
-						<Heading as="h1" fontWeight="bold" size="lg">
+						<Heading
+							as="h1"
+							fontWeight="bold"
+							size="lg"
+							sx={{ wordBreak: "auto-phrase" }}
+						>
 							{post.title}
 						</Heading>
 						<Text color="gray.400">{post.publishedAt}</Text>
