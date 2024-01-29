@@ -11,7 +11,11 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
 		return null
 	}
 	return (
-		<StyledCard background="brand.background" color="brand.accent">
+		<StyledCard
+			background="brand.background"
+			color="brand.accent"
+			shadow="none"
+		>
 			<CardBody py="0" p="0">
 				<nav>
 					<List>
@@ -36,7 +40,7 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
 const StyledCard = styled(Card)`
   min-width: 200px;
   width: 100%;
-  max-width: 20%;
+  max-width: 240px;
   position: sticky;
   top: 2rem;
   height: min-content;
