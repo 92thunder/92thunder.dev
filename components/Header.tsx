@@ -7,7 +7,11 @@ export const Header: React.FC = () => {
 		<Box p="24px">
 			<Stack alignItems="center" direction="row" justifyContent="space-between">
 				<Heading as="h1" fontSize="24px" size="lg">
-					<Link href="/" sx={{ textDecoration: "none" }} textDecoration="none">
+					<Link
+						href="/blog"
+						sx={{ textDecoration: "none" }}
+						textDecoration="none"
+					>
 						92thunder.dev
 					</Link>
 				</Heading>
