@@ -18,6 +18,13 @@ type PostInfo = BlogPostInfo | ExternalPostInfo
 
 export const postsInfo: PostInfo[] = [
 	{
+		id: "why-anti-four-keys",
+		mdFilename: "2024-01-30.md",
+		publishedAt: "2024-01-30 00:00:00",
+		title: "なぜFour Keysが嫌われるのか",
+		type: "blog",
+	},
+	{
 		id: "playwright-world",
 		mdFilename: "2024-01-24.md",
 		publishedAt: "2024-01-24 00:00:00",
