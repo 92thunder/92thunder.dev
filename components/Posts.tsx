@@ -28,6 +28,7 @@ const PostCard: React.FC<{ readonly post: Post }> = ({ post }) => {
 				backgroundColor="brand.background"
 				_hover={{ bg: "gray.800" }}
 				py={5}
+				shadow="none"
 			>
 				<CardBody p="0">
 					<VStack alignItems="start" direction="column" spacing={10}>

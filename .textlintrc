@@ -1,15 +1,12 @@
 {
-  "plugins": {},
-  "filters": {},
   "rules": {
-    "preset-japanese": true,
+    "preset-japanese": {
+      "sentence-length": false
+    },
     "preset-ja-spacing": {
       "ja-space-between-half-and-full-width": {
           "space": "always"
       }
-    },
-    "first-line-h1": {
-      "level": 2
     }
   }
 }
