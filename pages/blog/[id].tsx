@@ -44,14 +44,24 @@ const theme: Parameters<typeof ChakraUIRenderer>[0] = {
 	code: CodeBlock,
 	h2: ({ children }) => {
 		return (
-			<Heading as="h2" my="32px" size="lg" id={children.toString()}>
+			<Heading
+				as="h2"
+				my="32px"
+				size="lg"
+				id={children ? children.toString() : ""}
+			>
 				{children}
 			</Heading>
 		)
 	},
 	h3: ({ children }) => {
 		return (
-			<Heading as="h3" my="24px" size="md" id={children.toString()}>
+			<Heading
+				as="h3"
+				my="24px"
+				size="md"
+				id={children ? children.toString() : ""}
+			>
 				{children}
 			</Heading>
 		)
@@ -61,9 +71,28 @@ const theme: Parameters<typeof ChakraUIRenderer>[0] = {
 	},
 	p: ({ children }) => {
 		return (
-			<Text lineHeight={1.5} my="16px">
+			<Text lineHeight={1.5} my="16px" fontSize="18px">
 				{children}
 			</Text>
+		)
+	},
+	blockquote: ({ children }) => {
+		return (
+			<Box
+				as="blockquote"
+				bg="gray.800"
+				borderLeft="4px solid"
+				borderColor="brand.accent"
+				fontStyle="italic"
+				mt="32px"
+				pl="16px"
+				py="8px"
+				maxW="100%"
+				overflowWrap="break-word"
+				overflow="hidden"
+			>
+				{children}
+			</Box>
 		)
 	},
 }
@@ -101,9 +130,9 @@ const PostPage: NextPage = ({
 						</Heading>
 						<Text color="gray.400">{post.publishedAt}</Text>
 					</VStack>
-					<HStack alignItems="start" gap={2}>
+					<HStack alignItems="start" gap={2} maxW="100%">
 						<TableOfContents markdown={post.body} />
-						<Box>
+						<Box flexGrow="1" overflow="hidden">
 							<ReactMarkdown
 								components={ChakraUIRenderer(theme)}
 								plugins={[remarkGfm]}

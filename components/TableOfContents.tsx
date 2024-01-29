@@ -20,7 +20,11 @@ export const TableOfContents: FC<{ readonly markdown: string }> = ({
 				<nav>
 					<List>
 						{headings.map((heading) => (
-							<ListItem key={heading.id} my="2">
+							<ListItem
+								key={heading.id}
+								my="2"
+								ml={heading.level === 2 ? 0 : 3}
+							>
 								<Link
 									fontSize={14}
 									href={`#${heading.id}`}
