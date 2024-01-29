@@ -132,7 +132,7 @@ const PostPage: NextPage = ({
 					</VStack>
 					<HStack alignItems="start" gap={2} maxW="100%">
 						<TableOfContents markdown={post.body} />
-						<Box flexGrow="1" overflow="hidden">
+						<Box flexGrow="1" overflow="hidden" mt="-10px">
 							<ReactMarkdown
 								components={ChakraUIRenderer(theme)}
 								plugins={[remarkGfm]}
