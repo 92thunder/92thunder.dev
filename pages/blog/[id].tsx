@@ -71,7 +71,7 @@ const theme: Parameters<typeof ChakraUIRenderer>[0] = {
 	},
 	p: ({ children }) => {
 		return (
-			<Text lineHeight={1.5} my="16px" fontSize="18px">
+			<Text lineHeight={1.5} my="16px" fontSize="1.2rem">
 				{children}
 			</Text>
 		)
@@ -96,7 +96,6 @@ const theme: Parameters<typeof ChakraUIRenderer>[0] = {
 		)
 	},
 }
-
 const PostPage: NextPage = ({
 	post,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -119,7 +118,6 @@ const PostPage: NextPage = ({
 			<Box p="24px" pt="2rem">
 				<VStack alignItems="start" gap={10}>
 					<VStack alignItems="start">
-						G{" "}
 						<Heading
 							as="h1"
 							fontWeight="bold"
