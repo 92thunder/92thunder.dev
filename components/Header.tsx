@@ -7,15 +7,11 @@ export const Header: React.FC = () => {
 		<Box p="24px">
 			<Stack alignItems="center" direction="row" justifyContent="space-between">
 				<Heading as="h1" fontSize="24px" size="lg">
-					<Link
-						href="/blog"
-						sx={{ textDecoration: "none" }}
-						textDecoration="none"
-					>
+					<Link href="/" sx={{ textDecoration: "none" }} textDecoration="none">
 						<Image src="/icon.png" alt="icon" width="48px" height="48px" />
 					</Link>
 				</Heading>
-				<HStack spacing={4}>
+				<HStack spacing={4} fontSize="1.2rem">
 					<Box>
 						<Link
 							_hover={{ color: "brand.accent" }}

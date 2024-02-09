@@ -1,11 +1,10 @@
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
-import { Header } from "../components/Header"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import { GA_ID, pageview } from "../libs/gtag"
-import { Box, ChakraProvider, Container, extendTheme } from "@chakra-ui/react"
-import { Footer } from "../components/Footer"
+import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react"
+import Head from "next/head"
 
 const chakraTheme = extendTheme({
 	config: {
@@ -46,13 +45,19 @@ function MyApp({ Component, pageProps }: AppProps) {
 		}
 	}, [router.events])
 	return (
-		<ChakraProvider theme={chakraTheme}>
-			<Container maxW="100%" minW="container.md" p="0">
+		<>
+			<Head>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1, viewport-fit=cover"
+				/>
+			</Head>
+			<ChakraProvider theme={chakraTheme}>
 				<Box minH="100vh">
 					<Component {...pageProps} />
 				</Box>
-			</Container>
-		</ChakraProvider>
+			</ChakraProvider>
+		</>
 	)
 }
 

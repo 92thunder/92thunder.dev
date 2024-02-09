@@ -1,4 +1,3 @@
-"use client"
 import { Box, Heading, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { Header } from "./Header"
@@ -30,7 +29,7 @@ export const HeroArea: React.FC = () => {
 		<>
 			<section>
 				<Box
-					h="100vh"
+					h="100lvh"
 					sx={{
 						background: `url(./watercolor_bg.jpg), linear-gradient(${gradientAngle}deg, ${currentBgColors})`,
 						backgroundBlendMode: "hard-light",
@@ -46,7 +45,7 @@ export const HeroArea: React.FC = () => {
 					>
 						<Header />
 						<VStack
-							h="calc(100vh - 96px)"
+							h="calc(100lvh - 96px)"
 							justifyContent="center"
 							position="absolute"
 							right="0"
@@ -55,7 +54,11 @@ export const HeroArea: React.FC = () => {
 							bottom="0"
 							pointerEvents="none"
 						>
-							<Heading as="h2" fontSize="4em" m="0">
+							<Heading
+								as="h2"
+								m="0"
+								fontSize={{ base: "2.5rem", md: "4rem", lg: "5rem" }}
+							>
 								92thudner.dev
 							</Heading>
 						</VStack>
