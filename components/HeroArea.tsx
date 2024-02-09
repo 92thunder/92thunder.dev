@@ -59,7 +59,7 @@ export const HeroArea: React.FC = () => {
 								m="0"
 								fontSize={{ base: "2.5rem", md: "4rem", lg: "5rem" }}
 							>
-								92thudner.dev
+								92thunder.dev
 							</Heading>
 						</VStack>
 					</Box>
