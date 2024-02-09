@@ -29,7 +29,6 @@ export const HeroArea: React.FC = () => {
 			<section>
 				<Box
 					h="calc(100vh - 76.8px)"
-					pb="24px"
 					sx={{
 						backgroundSize: "cover",
 						background: `url(./watercolor_bg.jpg), linear-gradient(${gradientAngle}deg, ${currentBgColors})`,
