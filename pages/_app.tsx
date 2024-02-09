@@ -48,11 +48,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ChakraProvider theme={chakraTheme}>
 			<Container maxW="100%" minW="container.md" p="0">
-				<Header />
-				<Box minH="calc(100vh - 76px)">
+				<Box minH="100vh">
 					<Component {...pageProps} />
 				</Box>
-				<Footer />
 			</Container>
 		</ChakraProvider>
 	)

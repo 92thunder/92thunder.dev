@@ -18,6 +18,7 @@ import { ShareButtons } from "../../components/ShareButtons"
 import ChakraUIRenderer from "chakra-ui-markdown-renderer"
 import remarkGfm from "remark-gfm"
 import { CodeBlock } from "../../components/CodeBlock"
+import { Header } from "../../components/Header"
 
 export async function getStaticPaths() {
 	const results: Post[] = await getPosts()
@@ -115,6 +116,7 @@ const PostPage: NextPage = ({
 				<meta content="92thunder.dev" property="og:site_name" />
 				<meta content="https://92thunder.dev/ogp.png" property="og:image" />
 			</Head>
+			<Header />
 			<Box p="24px" pt="2rem">
 				<VStack alignItems="start" gap={10}>
 					<VStack alignItems="start">

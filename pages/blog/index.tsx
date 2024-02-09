@@ -6,6 +6,7 @@ import styles from "../../styles/Home.module.css"
 import { Post } from "../../types"
 import { generateFeed } from "../../libs/generateFeed"
 import { Box, VStack } from "@chakra-ui/react"
+import { Header } from "../../components/Header"
 
 export const getStaticProps: GetStaticProps = async () => {
 	const results: Post[] = await getPosts()
@@ -47,6 +48,7 @@ const Blog: NextPage = ({
 				/>
 			</Head>
 
+			<Header />
 			<Box p="24px" pt="2rem">
 				<main className={styles.main}>
 					<VStack alignItems="start" spacing="16px">
