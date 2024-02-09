@@ -1,10 +1,14 @@
 "use client"
 import { Box, Heading, Text, VStack } from "@chakra-ui/react"
-import { useMemo } from "react"
+import { useEffect, useState } from "react"
 
 export const HeroArea: React.FC = () => {
 	const bgColors = ["#313125", "#165C9A", "#C3B03E", "#2A493C", "#6F786B"]
-	const currentBgColors = useMemo(() => {
+	const [currentBgColors, setCurrentBgColors] = useState<string[]>([])
+	const [scaleX, setScaleX] = useState<number>(1)
+	const [scaleY, setScaleY] = useState<number>(1)
+	const [gradientAngle, setGradientAngle] = useState<number>(0)
+	useEffect(() => {
 		const colors: string[] = []
 		const length = bgColors.length
 		const colorsLength = Math.max(Math.floor(Math.random() * 5), 2)
@@ -14,13 +18,11 @@ export const HeroArea: React.FC = () => {
 				colors.push(bgColors[index])
 			}
 		}
-		return colors.join(",")
+		setCurrentBgColors(colors)
+		setScaleX(Math.random() > 0.5 ? 1 : -1)
+		setScaleY(Math.random() > 0.5 ? 1 : -1)
+		setGradientAngle(Math.floor(Math.random() * 360))
 	}, [])
-
-	const scaleX = Math.random() > 0.5 ? 1 : -1
-	const scaleY = Math.random() > 0.5 ? 1 : -1
-
-	const gradientAngle = Math.floor(Math.random() * 360)
 
 	return (
 		<>
@@ -39,7 +41,7 @@ export const HeroArea: React.FC = () => {
 						h="100%"
 						justifyContent="center"
 						spacing="16px"
-						sx={{ transform: `scale(${scaleX}, ${scaleY})` }}
+						sx={{ transform: `scale(${1 / scaleX}, ${1 / scaleY})` }}
 					>
 						<Heading as="h2" fontSize={48}>
 							Hello, I&#39;m 92thunder
