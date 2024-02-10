@@ -4,6 +4,7 @@ import {
 	Divider,
 	HStack,
 	Heading,
+	Image,
 	Link,
 	Text,
 	VStack,
@@ -72,7 +73,7 @@ const theme: Parameters<typeof ChakraUIRenderer>[0] = {
 	},
 	p: ({ children }) => {
 		return (
-			<Text lineHeight={1.5} my="16px" fontSize="1.2rem">
+			<Text lineHeight={1.5} my="1.5rem" fontSize="1.2rem">
 				{children}
 			</Text>
 		)
@@ -94,6 +95,11 @@ const theme: Parameters<typeof ChakraUIRenderer>[0] = {
 			>
 				{children}
 			</Box>
+		)
+	},
+	img: ({ ...props }) => {
+		return (
+			<Image {...props} maxH="50rem" px="2rem" py="1rem" textAlign="center" />
 		)
 	},
 }
