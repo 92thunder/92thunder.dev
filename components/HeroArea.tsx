@@ -45,7 +45,7 @@ export const HeroArea: React.FC = () => {
 					>
 						<Header />
 						<VStack
-							h="calc(100lvh - 96px)"
+							h="calc(100lvh)"
 							justifyContent="center"
 							position="absolute"
 							right="0"
