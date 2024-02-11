@@ -1,6 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next"
 import {
 	Box,
+	Container,
 	Divider,
 	HStack,
 	Heading,
@@ -123,36 +124,38 @@ const PostPage: NextPage = ({
 				<meta content="https://92thunder.dev/ogp.png" property="og:image" />
 			</Head>
 			<Header />
-			<Box p="24px" pt="2rem">
-				<VStack alignItems="start" gap={10}>
-					<VStack alignItems="start">
-						<Heading
-							as="h1"
-							fontWeight="bold"
-							size="lg"
-							sx={{ wordBreak: "auto-phrase" }}
-						>
-							{post.title}
-						</Heading>
-						<Text color="gray.400">{post.publishedAt}</Text>
-					</VStack>
-					<HStack alignItems="start" gap={2} maxW="100%">
-						<TableOfContents markdown={post.body} />
-						<Box flexGrow="1" overflow="hidden" mt="-10px">
-							<ReactMarkdown
-								components={ChakraUIRenderer(theme)}
-								plugins={[remarkGfm]}
-								skipHtml={false}
+			<Container maxW="container.xl">
+				<Box p="24px" pt="2rem">
+					<VStack alignItems="start" gap={10}>
+						<VStack alignItems="start">
+							<Heading
+								as="h1"
+								fontWeight="bold"
+								size="lg"
+								sx={{ wordBreak: "auto-phrase" }}
 							>
-								{post.body}
-							</ReactMarkdown>
-							<Box mt={20}>
-								<ShareButtons title={post.title} />
+								{post.title}
+							</Heading>
+							<Text color="gray.400">{post.publishedAt}</Text>
+						</VStack>
+						<HStack alignItems="start" gap={2} maxW="100%">
+							<Box flexGrow="1" overflow="hidden" mt="-10px">
+								<ReactMarkdown
+									components={ChakraUIRenderer(theme)}
+									plugins={[remarkGfm]}
+									skipHtml={false}
+								>
+									{post.body}
+								</ReactMarkdown>
+								<Box mt={20}>
+									<ShareButtons title={post.title} />
+								</Box>
 							</Box>
-						</Box>
-					</HStack>
-				</VStack>
-			</Box>
+							<TableOfContents markdown={post.body} />
+						</HStack>
+					</VStack>
+				</Box>
+			</Container>
 		</>
 	)
 }

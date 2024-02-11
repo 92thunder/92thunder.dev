@@ -4,7 +4,7 @@ import { Posts } from "../../components/Posts"
 import { getPosts } from "../../libs/postRepository"
 import { Post } from "../../types"
 import { generateFeed } from "../../libs/generateFeed"
-import { Box, VStack } from "@chakra-ui/react"
+import { Box, Container, VStack } from "@chakra-ui/react"
 import { Header } from "../../components/Header"
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -48,11 +48,13 @@ const Blog: NextPage = ({
 			</Head>
 
 			<Header />
-			<Box p="24px" pt="2rem" w="100%" as="main">
-				<VStack alignItems="start" spacing="16px">
-					<Posts posts={posts} />
-				</VStack>
-			</Box>
+			<Container maxW="container.xl">
+				<Box p="24px" pt="2rem" w="100%" as="main">
+					<VStack alignItems="start" spacing="16px">
+						<Posts posts={posts} />
+					</VStack>
+				</Box>
+			</Container>
 		</>
 	)
 }
