@@ -10,14 +10,18 @@ import {
 	TwitterShareButton,
 } from "react-share"
 
-export const ShareButtons: FC = () => {
+export const ShareButtons: FC<{ title: string }> = ({ title }) => {
 	const baseUrl = "https://92thunder.dev"
 	const router = useRouter()
 	const currentURL = baseUrl + router.asPath
 
 	return (
 		<HStack gap={4} mt={8}>
-			<TwitterShareButton style={{ width: "min-content" }} url={currentURL}>
+			<TwitterShareButton
+				style={{ width: "min-content" }}
+				url={currentURL}
+				title={title}
+			>
 				<TwitterIcon round size={32} />
 			</TwitterShareButton>
 			<HatenaShareButton style={{ width: "min-content" }} url={currentURL}>

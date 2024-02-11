@@ -147,7 +147,7 @@ const PostPage: NextPage = ({
 								{post.body}
 							</ReactMarkdown>
 							<Box mt={20}>
-								<ShareButtons />
+								<ShareButtons title={post.title} />
 							</Box>
 						</Box>
 					</HStack>
