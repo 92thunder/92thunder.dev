@@ -18,6 +18,13 @@ type PostInfo = BlogPostInfo | ExternalPostInfo
 
 export const postsInfo: PostInfo[] = [
 	{
+		id: "astro-tutorial",
+		mdFilename: "2024-02-23.md",
+		publishedAt: "2024-02-23 00:00:00",
+		title: "Astro Tutorialをやってみる",
+		type: "blog",
+	},
+	{
 		id: "my-blog-2024-02-11",
 		mdFilename: "2024-02-11/post.md",
 		publishedAt: "2024-02-11 00:00:00",

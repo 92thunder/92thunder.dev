@@ -124,7 +124,7 @@ const PostPage: NextPage = ({
 				<meta content="https://92thunder.dev/ogp.png" property="og:image" />
 			</Head>
 			<Header />
-			<Container maxW="container.xl">
+			<Container maxW="container.xl" px="0">
 				<Box p="24px" pt="2rem">
 					<VStack alignItems="start" gap={10}>
 						<VStack alignItems="start">
