@@ -18,6 +18,13 @@ type PostInfo = BlogPostInfo | ExternalPostInfo
 
 export const postsInfo: PostInfo[] = [
 	{
+		id: "git-pull-push-alias",
+		mdFilename: "2024-05-27.md",
+		publishedAt: "2024-05-28 00:00:00",
+		title: "git pull, push のエイリアスを設定して時間短縮",
+		type: "blog",
+	},
+	{
 		id: "dev-ops-days-tokyo-2024",
 		mdFilename: "2024-04-23.md",
 		publishedAt: "2024-04-24 00:00:00",
