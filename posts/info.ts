@@ -18,6 +18,13 @@ type PostInfo = BlogPostInfo | ExternalPostInfo
 
 export const postsInfo: PostInfo[] = [
 	{
+		id: "techramen2024conf",
+		mdFilename: "2024-08-11.md",
+		publishedAt: "2024-08-11 00:00:00",
+		title: "TechRAMEN Conf 2024に登壇 & スタッフとして参加した",
+		type: "blog",
+	},
+	{
 		id: "git-pull-push-alias",
 		mdFilename: "2024-05-27.md",
 		publishedAt: "2024-05-28 00:00:00",
