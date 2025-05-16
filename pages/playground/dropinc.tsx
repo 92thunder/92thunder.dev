@@ -89,7 +89,6 @@ const DropArea: React.FC = () => {
 
   const handleMouseUp = (event: React.MouseEvent<HTMLDivElement>) => {
     const holdTime = Date.now() - mouseDownTime
-    console.log(`マウスダウン時間: ${holdTime}ms`)
     
     const color = bgColors[Math.floor(Math.random() * bgColors.length)]
     setDrops([...drops, { 
@@ -111,9 +110,14 @@ const DropArea: React.FC = () => {
             cursor: "pointer",
             overflow: "hidden",
             position: "relative",
+            touchAction: "none",
+            WebkitTapHighlightColor: "transparent",
+            userSelect: "none",
+            WebkitUserSelect: "none",
+            msUserSelect: "none",
 					}}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
+          onPointerDown={handleMouseDown}
+          onPointerUp={handleMouseUp}
 				>
           {drops.map((drop, index) => (
             <DropInc key={index} x={drop.x} y={drop.y} color={drop.color} scale={drop.scale} />
