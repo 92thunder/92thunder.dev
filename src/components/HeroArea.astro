@@ -1,0 +1,44 @@
+---
+import Header from "./Header.astro"
+---
+
+<section>
+  <div
+    id="hero"
+    style="height: 100lvh; background-size: cover; background-blend-mode: hard-light; position: relative;"
+  >
+    <div id="hero-inner" style="width: 100%; height: 100%; position: relative;">
+      <Header />
+      <div
+        style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;"
+      >
+        <h2
+          style="margin: 0; font-size: clamp(2rem, 6vw, 5rem); font-weight: 700;"
+        >
+          92thunder.dev
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const bgColors = ["#313125", "#165C9A", "#C3B03E", "#2A493C", "#6F786B"]
+  const colorsLength = Math.max(Math.floor(Math.random() * 5), 2)
+  const picked: string[] = []
+  while (picked.length <= colorsLength) {
+    const c = bgColors[Math.floor(Math.random() * bgColors.length)]
+    if (!picked.includes(c)) picked.push(c)
+  }
+  const angle = Math.floor(Math.random() * 360)
+  const scaleX = Math.random() > 0.5 ? 1 : -1
+  const scaleY = Math.random() > 0.5 ? 1 : -1
+
+  const hero = document.getElementById("hero")!
+  const heroInner = document.getElementById("hero-inner")!
+  hero.style.background = `url('/watercolor_bg.jpg'), linear-gradient(${angle}deg, ${picked.join(", ")})`
+  hero.style.backgroundSize = "cover"
+  hero.style.backgroundBlendMode = "hard-light"
+  hero.style.transform = `scale(${scaleX}, ${scaleY})`
+  heroInner.style.transform = `scale(${scaleX}, ${scaleY})`
+</script>

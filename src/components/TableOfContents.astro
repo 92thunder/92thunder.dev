@@ -1,0 +1,45 @@
+---
+import type { Heading } from "../utils/getHeadings"
+
+interface Props {
+  headings: Heading[]
+}
+
+const { headings } = Astro.props
+const h2h3 = headings.filter((h) => h.level === 2 || h.level === 3)
+---
+
+{
+  h2h3.length > 0 && (
+    <aside class="toc hidden md:block">
+      <nav>
+        <p class="text-sm font-semibold text-gray-400 mb-2">目次</p>
+        <ul class="flex flex-col gap-1">
+          {h2h3.map((h) => (
+            <li class={h.level === 3 ? "pl-3" : ""}>
+              <a
+                href={`#${h.id}`}
+                class="text-sm text-gray-300 hover:text-brand-accent transition-colors leading-snug block py-0.5"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  )
+}
+
+<style>
+  .toc {
+    min-width: 200px;
+    max-width: 240px;
+    position: sticky;
+    top: 2rem;
+    height: min-content;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+</style>
