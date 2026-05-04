@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { HeroArea } from "../components/HeroArea"
+import { getPosts } from "../../libs/postRepository"
+import { generateFeed } from "../../libs/generateFeed"
+
+const posts = await getPosts()
+generateFeed(posts)
+---
+
+<BaseLayout>
+  <HeroArea client:load />
+</BaseLayout>

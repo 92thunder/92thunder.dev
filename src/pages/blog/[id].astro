@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Header from "../../components/Header.astro"
+import Footer from "../../components/Footer.astro"
+import TableOfContents from "../../components/TableOfContents.astro"
+import ShareButtons from "../../components/ShareButtons.astro"
+import { getPost, getPosts } from "../../../libs/postRepository"
+import { getHeadings } from "../../../libs/getHeadings"
+import { marked } from "marked"
+import type { Post } from "../../../types"
+
+export async function getStaticPaths() {
+  const posts: Post[] = await getPosts()
+  return posts
+    .filter((p) => p.type === "blog")
+    .map((p) => ({ params: { id: p.id } }))
+}
+
+const { id } = Astro.params
+const post = await getPost(id)
+const headings = getHeadings(post.body)
+const htmlContent = await marked.parse(post.body)
+const description = post.body.split("\n")[0] || post.title
+const pageUrl = `https://92thunder.dev/blog/${id}`
+---
+
+<BaseLayout
+  title={post.title}
+  description={description}
+  ogType="article"
+  ogUrl={pageUrl}
+>
+  <Header />
+  <main class="main">
+    <article>
+      <div class="post-meta">
+        <h1 class="post-title">{post.title}</h1>
+        <time class="post-date">{post.publishedAt}</time>
+      </div>
+      <div class="content-layout">
+        <div class="content" set:html={htmlContent} />
+        <TableOfContents headings={headings} />
+      </div>
+      <ShareButtons title={post.title} url={pageUrl} />
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+    padding-top: 2rem;
+  }
+  .post-meta {
+    margin-bottom: 2rem;
+  }
+  .post-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 0 0.5rem;
+    word-break: auto-phrase;
+  }
+  .post-date {
+    color: #9ca3af;
+    font-size: 0.9rem;
+  }
+  .content-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-top: -10px;
+  }
+  .content {
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
+    font-size: 1.2rem;
+  }
+  .content :global(a) {
+    color: #60a5fa;
+    text-decoration: underline;
+  }
+  .content :global(img) {
+    max-height: 50rem;
+    padding: 1rem 2rem;
+  }
+</style>

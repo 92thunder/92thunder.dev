@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises"
+import { join } from "node:path"
 import { postsInfo } from "../posts/info"
-import { Post } from "../types"
+import type { Post } from "../types"
 
 const toDisplayDate = (dateString: string) => {
 	return dateString.slice(0, 10).replaceAll("-", "/")
@@ -10,10 +11,7 @@ export async function getPosts(): Promise<Post[]> {
 	const posts: Post[] = []
 	for (const postInfo of postsInfo) {
 		if (postInfo.type === "blog") {
-			const filePath = new URL(
-				`../posts/${postInfo.mdFilename}`,
-				import.meta.url,
-			)
+			const filePath = join(process.cwd(), "posts", postInfo.mdFilename)
 			const body = await readFile(filePath, { encoding: "utf8" })
 			posts.push({
 				body,
@@ -43,7 +41,7 @@ export async function getPost(
 		throw new Error(`Not found ${id}`)
 	}
 	if (postInfo.type === "blog") {
-		const filePath = new URL(`../posts/${postInfo.mdFilename}`, import.meta.url)
+		const filePath = join(process.cwd(), "posts", postInfo.mdFilename)
 		const body = await readFile(filePath, { encoding: "utf8" })
 		return {
 			body,

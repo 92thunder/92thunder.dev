@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string
+  url: string
+}
+
+const { title, url } = Astro.props
+const encodedUrl = encodeURIComponent(url)
+const encodedTitle = encodeURIComponent(title)
+
+const twitterUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
+const hatenaUrl = `https://b.hatena.ne.jp/entry/s/${url.replace(/^https?:\/\//, "")}`
+const pocketUrl = `https://getpocket.com/save?url=${encodedUrl}&title=${encodedTitle}`
+---
+
+<div class="share-buttons">
+  <a href={twitterUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on X (Twitter)">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="16" fill="#000000"/>
+      <path d="M18.244 13.525L23.5 8H22.17L17.648 12.71L14.07 8H9L14.516 16.228L9 22H10.33L15.099 17.02L18.888 22H24L18.244 13.525ZM15.754 16.298L15.138 15.424L10.8 9.04H13.44L16.302 13.24L16.918 14.114L22.17 20.967H19.53L15.754 16.298Z" fill="white"/>
+    </svg>
+  </a>
+  <a href={hatenaUrl} target="_blank" rel="noopener noreferrer" aria-label="Share on Hatena Bookmark">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="16" fill="#00A4DE"/>
+      <text x="16" y="21" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="sans-serif">B!</text>
+    </svg>
+  </a>
+  <a href={pocketUrl} target="_blank" rel="noopener noreferrer" aria-label="Save to Pocket">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="16" r="16" fill="#EF3F56"/>
+      <path d="M9 11h14v6a7 7 0 01-14 0v-6z" fill="none" stroke="white" stroke-width="2"/>
+      <path d="M12 14l4 4 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .share-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  a {
+    display: block;
+    border-radius: 50%;
+    transition: opacity 0.2s;
+  }
+  a:hover {
+    opacity: 0.8;
+  }
+</style>

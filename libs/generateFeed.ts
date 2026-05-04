@@ -1,6 +1,6 @@
 import fs from "node:fs"
 import { Feed } from "feed"
-import { Post } from "../types"
+import type { Post } from "../types"
 
 export const generateFeed = (posts: Post[]) => {
 	const baseUrl = "https://92thunder.dev"

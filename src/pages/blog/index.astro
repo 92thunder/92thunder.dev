@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Header from "../../components/Header.astro"
+import Footer from "../../components/Footer.astro"
+import { getPosts } from "../../../libs/postRepository"
+import type { Post } from "../../../types"
+
+const posts: Post[] = await getPosts()
+---
+
+<BaseLayout
+  title="92thunder.dev"
+  description="Ryota Kunisada@92thunder Blog"
+>
+  <Header />
+  <main class="main">
+    <ul class="post-list">
+      {
+        posts.map((post) => {
+          const href = post.type === "blog" ? `/blog/${post.id}` : post.body
+          const isExternal = post.type === "external"
+          const bodyPreview = post.body.includes("---")
+            ? post.body.split("---")[0]
+            : null
+
+          return (
+            <li class="post-item">
+              <a
+                href={href}
+                class="post-card"
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+              >
+                <div class="post-header">
+                  <p class="post-title">
+                    {post.title}
+                    {isExternal && (
+                      <span class="external-icon" aria-hidden="true">
+                        ↗
+                      </span>
+                    )}
+                  </p>
+                  <p class="post-date">{post.publishedAt}</p>
+                </div>
+                {bodyPreview && (
+                  <p class="post-preview">{bodyPreview}</p>
+                )}
+              </a>
+            </li>
+          )
+        })
+      }
+    </ul>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+    padding-top: 2rem;
+  }
+  .post-list {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .post-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .post-card {
+    display: block;
+    padding: 20px 0;
+    transition: background 0.15s;
+    border-radius: 4px;
+  }
+  .post-card:hover .post-title {
+    opacity: 0.8;
+  }
+  .post-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .post-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-accent);
+    word-break: auto-phrase;
+  }
+  .external-icon {
+    margin-left: 6px;
+    font-size: 18px;
+  }
+  .post-date {
+    margin: 0;
+    font-size: 14px;
+    color: #e5e7eb;
+  }
+  .post-preview {
+    margin: 12px 0 0;
+    color: #f3f4f6;
+  }
+</style>

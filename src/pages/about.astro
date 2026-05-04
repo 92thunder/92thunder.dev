@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+
+const steps = [
+  {
+    title: "Techtouch, Inc.",
+    duration: "2018/4 ~ Now",
+    description:
+      "1人目の社員として入社し、フロントエンドエンジニアとしてSaaS開発をリード。TypeScript, Reactを使ったUI開発の他、顧客によってバージョンを切り替える仕組みなどフロントエンド領域でサービスの信頼性を高めるための開発を担当。",
+  },
+  {
+    title: "Sony Digital Network Applications, Inc.",
+    duration: "2015/4 ~ 2018/3",
+    description:
+      "Webアプリケーション開発を取り扱う部署を志望し、複数プロジェクトでの開発を経験。Java, C#, Ruby, JavaScriptを使用。",
+  },
+]
+---
+
+<BaseLayout title="About | 92thunder.dev">
+  <Header />
+  <main class="main">
+    <section class="about">
+      <dl>
+        <dt class="section-title">About me</dt>
+        <dd class="about-text">
+          フロントエンドエンジニアとしてテックタッチ株式会社で働いています。
+          DevOpsに強い興味があり、より良いプロダクトを作れる文化や基盤作りにも取り組んでいます。
+        </dd>
+      </dl>
+    </section>
+
+    <section class="career">
+      <dl>
+        <dt class="section-title">Job History</dt>
+        <dd>
+          <ol class="steps">
+            {
+              steps.map((step) => (
+                <li class="step">
+                  <div class="step-indicator">
+                    <span class="step-dot" />
+                    <span class="step-line" />
+                  </div>
+                  <div class="step-content">
+                    <p class="step-title">{step.title}</p>
+                    <p class="step-duration">{step.duration}</p>
+                    <p class="step-desc">{step.description}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </dd>
+      </dl>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+  dl {
+    padding: 24px;
+    margin: 0;
+  }
+  dt {
+    display: block;
+  }
+  dd {
+    margin: 1rem 0 0;
+  }
+  .about-text {
+    line-height: 1.7;
+  }
+  .career {
+    margin-top: 1rem;
+  }
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .step {
+    display: flex;
+    gap: 1rem;
+    min-height: 120px;
+  }
+  .step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .step-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .step-line {
+    flex: 1;
+    width: 2px;
+    background: var(--color-accent);
+    margin: 4px 0;
+    opacity: 0.3;
+  }
+  .step:last-child .step-line {
+    display: none;
+  }
+  .step-content {
+    padding-bottom: 2rem;
+  }
+  .step-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .step-duration {
+    margin: 4px 0 8px;
+    color: #9ca3af;
+    font-size: 0.9rem;
+  }
+  .step-desc {
+    margin: 0;
+    color: white;
+    line-height: 1.6;
+  }
+</style>
