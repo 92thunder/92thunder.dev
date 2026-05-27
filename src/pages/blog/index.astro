@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Header from "../../components/Header.astro"
+import PostList from "../../components/PostList.astro"
+import { externalPosts } from "../../data/external-posts"
+
+const blogEntries = await getCollection("blog")
+
+type PostItem = {
+  id: string
+  title: string
+  publishedAt: string
+  type: "blog" | "external"
+  body?: string
+  link?: string
+}
+
+const blogPosts: PostItem[] = blogEntries.map((e) => ({
+  id: e.id.replace(/\.md$/, ""),
+  title: e.data.title,
+  publishedAt: e.data.publishedAt,
+  type: "blog",
+  body: e.body,
+}))
+
+const extPosts: PostItem[] = externalPosts.map((e) => ({
+  id: e.id,
+  title: e.title,
+  publishedAt: e.publishedAt,
+  type: "external",
+  link: e.link,
+}))
+
+const allPosts = [...blogPosts, ...extPosts].sort(
+  (a, b) => b.publishedAt.localeCompare(a.publishedAt)
+)
+---
+
+<BaseLayout
+  title="Blog - 92thunder.dev"
+  description="Ryota Kunisada@92thunder Blog"
+  ogUrl="https://92thunder.dev/blog"
+  ogType="blog"
+>
+  <Header />
+  <main class="max-w-screen-xl mx-auto px-6 pt-8">
+    <PostList posts={allPosts} />
+  </main>
+</BaseLayout>

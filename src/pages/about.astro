@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Header from "../components/Header.astro"
+import Career from "../components/Career.astro"
+---
+
+<BaseLayout title="About - 92thunder.dev" description="About Ryota Kunisada">
+  <Header />
+  <main class="max-w-screen-xl mx-auto px-6">
+    <div style="max-width: 800px;">
+      <dl class="p-6 mt-8">
+        <dt class="text-brand-accent text-2xl font-bold">About me</dt>
+        <dd class="mt-4 leading-relaxed">
+          フロントエンドエンジニアとしてテックタッチ株式会社で働いています。
+          DevOpsに強い興味があり、より良いプロダクトを作れる文化や基盤作りにも取り組んでいます。
+        </dd>
+      </dl>
+      <Career />
+    </div>
+  </main>
+</BaseLayout>

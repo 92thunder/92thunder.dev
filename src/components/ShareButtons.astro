@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<div class="flex gap-4 mt-16 flex-wrap" id="share-buttons">
+  <a
+    id="share-twitter"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="px-4 py-2 rounded text-sm font-semibold text-white transition-opacity hover:opacity-80"
+    style="background: #1da1f2;"
+  >
+    X でシェア
+  </a>
+  <a
+    id="share-hatena"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="px-4 py-2 rounded text-sm font-semibold text-white transition-opacity hover:opacity-80"
+    style="background: #00a4de;"
+  >
+    はてブ
+  </a>
+</div>
+
+<script define:vars={{ title }}>
+  const url = encodeURIComponent(window.location.href)
+  const encodedTitle = encodeURIComponent(title)
+
+  const twitter = document.getElementById("share-twitter")
+  const hatena = document.getElementById("share-hatena")
+
+  if (twitter) {
+    twitter.href = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${url}`
+  }
+  if (hatena) {
+    hatena.href = `https://b.hatena.ne.jp/entry/s/${window.location.href.replace(/^https?:\/\//, "")}`
+  }
+</script>

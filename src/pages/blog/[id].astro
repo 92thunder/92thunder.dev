@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content"
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Header from "../../components/Header.astro"
+import TableOfContents from "../../components/TableOfContents.astro"
+import ShareButtons from "../../components/ShareButtons.astro"
+import { getHeadings } from "../../utils/getHeadings"
+
+export async function getStaticPaths() {
+  const entries = await getCollection("blog")
+  return entries.map((entry) => ({
+    params: { id: entry.id.replace(/\.md$/, "") },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+const headings = getHeadings(entry.body)
+const description = entry.body.split("\n").find((l: string) => l.trim()) ?? entry.data.title
+---
+
+<BaseLayout
+  title={`${entry.data.title} - 92thunder.dev`}
+  description={description}
+  ogUrl={`https://92thunder.dev/blog/${entry.id}`}
+  ogType="article"
+>
+  <Header />
+  <main class="max-w-screen-xl mx-auto px-6 pt-8 pb-16">
+    <div class="flex gap-8 items-start max-w-full">
+      <article class="flex-1 overflow-hidden min-w-0">
+        <div class="mb-8">
+          <h1
+            class="text-2xl font-bold leading-snug"
+            style="word-break: auto-phrase;"
+          >
+            {entry.data.title}
+          </h1>
+          <p class="text-gray-400 mt-2">{entry.data.publishedAt}</p>
+        </div>
+        <div class="prose">
+          <Content />
+        </div>
+        <ShareButtons title={entry.data.title} />
+      </article>
+      <TableOfContents headings={headings} />
+    </div>
+  </main>
+</BaseLayout>

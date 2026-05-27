@@ -1,0 +1,64 @@
+---
+interface Props {
+  title?: string
+  description?: string
+  ogUrl?: string
+  ogType?: string
+}
+
+const {
+  title = "92thunder.dev",
+  description = "Ryota Kunisada@92thunder Blog",
+  ogUrl = "https://92thunder.dev",
+  ogType = "blog",
+} = Astro.props
+
+const GA_ID = "G-YEN4H45RWC"
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="92thunder.dev" />
+    <meta property="og:image" content="https://92thunder.dev/ogp.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title="Atom"
+      href="https://92thunder.dev/feeds/atom.xml"
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="RSS2.0"
+      href="https://92thunder.dev/feeds/feed.xml"
+    />
+    <!-- Google Analytics -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+    ></script>
+    <script define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+      gtag("config", GA_ID)
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>

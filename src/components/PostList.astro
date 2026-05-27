@@ -1,0 +1,72 @@
+---
+interface Post {
+  id: string
+  title: string
+  publishedAt: string
+  type: "blog" | "external"
+  body?: string
+  link?: string
+}
+
+interface Props {
+  posts: Post[]
+}
+
+const { posts } = Astro.props
+---
+
+<ul class="flex flex-col gap-4 mt-6 w-full">
+  {
+    posts.map((post) => {
+      const href =
+        post.type === "blog" ? `/blog/${post.id}` : (post.link ?? "#")
+      const bodyPreview =
+        post.body && post.body.includes("---")
+          ? post.body.split("---")[0].trim()
+          : null
+
+      return (
+        <li>
+          <a
+            href={href}
+            target={post.type === "external" ? "_blank" : undefined}
+            rel={post.type === "external" ? "noopener noreferrer" : undefined}
+            class="block rounded p-5 hover:bg-gray-800 transition-colors no-underline"
+          >
+            <div class="flex flex-col gap-1">
+              <div class="flex items-center gap-2">
+                <p
+                  class="text-brand-accent font-semibold text-xl"
+                  style="word-break: auto-phrase;"
+                >
+                  {post.title}
+                </p>
+                {post.type === "external" && (
+                  <svg
+                    class="w-4 h-4 text-brand-accent shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                )}
+              </div>
+              <p class="text-gray-200 text-sm">{post.publishedAt}</p>
+              {bodyPreview && (
+                <p class="text-gray-100 text-sm mt-1 leading-relaxed">
+                  {bodyPreview}
+                </p>
+              )}
+            </div>
+          </a>
+        </li>
+      )
+    })
+  }
+</ul>
