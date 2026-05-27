@@ -9,20 +9,24 @@
     "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.0",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/react": "^5.0.5",
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.2.1",
-    "@tailwindcss/vite": "^4.1.4",
-    "astro": "^5.7.1",
-    "feed": "^4.2.2",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.3.8",
+    "feed": "^5.2.1",
     "github-slugger": "^2.0.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.4"
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "typescript": "^5.8.3"
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.3"
+  },
+  "volta": {
+    "node": "22.22.3"
   }
 }

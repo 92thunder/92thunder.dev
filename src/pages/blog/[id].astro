@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content"
+import { getCollection, render } from "astro:content"
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import Header from "../../components/Header.astro"
 import TableOfContents from "../../components/TableOfContents.astro"
@@ -15,9 +15,10 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props
-const { Content } = await entry.render()
-const headings = getHeadings(entry.body)
-const description = entry.body.split("\n").find((l: string) => l.trim()) ?? entry.data.title
+const { Content } = await render(entry)
+const body = entry.body ?? ""
+const headings = getHeadings(body)
+const description = body.split("\n").find((l: string) => l.trim()) ?? entry.data.title
 ---
 
 <BaseLayout

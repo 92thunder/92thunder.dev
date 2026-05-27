@@ -15,7 +15,7 @@ export const GET: APIRoute = async () => {
       title: e.data.title,
       publishedAt: e.data.publishedAt,
       link: `${SITE_URL}/blog/${e.id.replace(/\.md$/, "")}`,
-      description: e.body.split("\n").find((l: string) => l.trim()) ?? e.data.title,
+      description: (e.body ?? "").split("\n").find((l: string) => l.trim()) ?? e.data.title,
     })),
     ...externalPosts.map((e) => ({
       id: e.id,
