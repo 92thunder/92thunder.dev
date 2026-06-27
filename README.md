@@ -30,3 +30,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## ブログ記事
+
+記事は `src/content/blog/` に Markdown ファイルとして置く。
+
+### 下書き（非公開）
+
+フロントマターに `draft: true` を追加すると、一覧・個別ページ・フィードのすべてから除外される。
+
+```md
+---
+title: "記事タイトル"
+publishedAt: "2026-06-27"
+draft: true
+---
+```
+
+公開するときは `draft: true` を削除する。
