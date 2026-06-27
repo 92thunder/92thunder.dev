@@ -1,39 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 92thunder.dev
 
-## Getting Started
+個人ブログ・ポートフォリオサイト。Astro で構築した静的サイト。
 
-First, run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## ブログ記事
+## ブログ記事を書く
 
 記事は `src/content/blog/` に Markdown ファイルとして置く。
+
+### フロントマター
+
+```md
+---
+title: "記事タイトル"
+publishedAt: "2026-06-27"
+---
+
+本文...
+```
 
 ### 下書き（非公開）
 
@@ -48,3 +30,40 @@ draft: true
 ```
 
 公開するときは `draft: true` を削除する。
+
+---
+
+## 開発
+
+### セットアップ
+
+```bash
+npm install
+```
+
+### コマンド
+
+| コマンド | 内容 |
+|---|---|
+| `npm run dev` | 開発サーバー起動（ホットリロード付き） |
+| `npm run build` | 本番ビルド（`dist/` に出力） |
+| `npm run preview` | ビルド結果をローカルでプレビュー |
+| `npm run check` | TypeScript 型チェック |
+
+### 主な技術スタック
+
+- [Astro](https://astro.build/) — 静的サイトジェネレーター
+- [Tailwind CSS](https://tailwindcss.com/) — スタイリング
+- React — インタラクティブなコンポーネント向け
+
+### ディレクトリ構成
+
+```
+src/
+├── components/   # Astro・React コンポーネント
+├── content/
+│   └── blog/     # ブログ記事 (.md)
+├── layouts/      # ページレイアウト
+├── pages/        # ルーティング
+└── styles/       # グローバル CSS
+```
