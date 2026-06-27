@@ -7,7 +7,7 @@ const SITE_URL = "https://92thunder.dev"
 const AUTHOR = { name: "92thunder", link: SITE_URL }
 
 export const GET: APIRoute = async () => {
-  const blogEntries = await getCollection("blog")
+  const blogEntries = await getCollection("blog", ({ data }) => !data.draft)
 
   const allPosts = [
     ...blogEntries.map((e) => ({

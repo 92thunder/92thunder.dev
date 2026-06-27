@@ -7,7 +7,7 @@ import ShareButtons from "../../components/ShareButtons.astro"
 import { getHeadings } from "../../utils/getHeadings"
 
 export async function getStaticPaths() {
-  const entries = await getCollection("blog")
+  const entries = await getCollection("blog", ({ data }) => !data.draft)
   return entries.map((entry) => ({
     params: { id: entry.id.replace(/\.md$/, "") },
     props: { entry },
