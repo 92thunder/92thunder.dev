@@ -15,7 +15,7 @@
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.8",
-    "feed": "^5.2.1",
+    "feed": "^6.0.0",
     "github-slugger": "^2.0.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
